@@ -10,7 +10,7 @@
   - The software itself hasn't been started yet
 
 ### Problems
-  - It was difficult to say exact datastructures the project uses in this state. 
+  - It was difficult to say exact data structures the project uses in this state. 
   - This led that it was difficult to comment about time complexity, because I'm not sure if the data structures I'm planning to use are ideal for the project.
 
 ### Questions
