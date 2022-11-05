@@ -1,6 +1,7 @@
 ## Progress report week 1
 
 ### What I have done this week?
+  - Getting familiarized with the course material.
   - I've created a project repository in Github and structure for materials.
   - Testing that repository is working as it should be.
   - I also tried to recap things from Data Strustures and Algorithms course, since it has been a year I completed the courses
