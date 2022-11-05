@@ -1,6 +1,6 @@
 ## Semantic tree generator
 
-Project is course work Data Structures and Algorithms.
+Data Structures and Algorithm course work at University of Helsinki
 
 ### Weekly progress reports
 
