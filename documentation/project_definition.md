@@ -6,7 +6,8 @@ The project utilizes branching algorithm that grows tree as follows
   2. Apply appropriate branching rule to the first unchecked proposition. Change status of the proposition to        checked and extend every active path under the proposition based on the branching tule. 
   3. If path contains an atomic proposition and its negation, put X at the end of the path. 
   5. Steps 2 and 3 are repeated until paths don't have any unchecked propositions.
-The tree is stored as binary tree (implemented as a class?), and/or utilizing Python hash table data structures like set and dict.
+
+The tree will be stored as binary tree (implemented as a class?), and/or utilizing Python hash table data structures like set and dict.
 
 ## Input and output
 The user will give an input string which consist of atomic propositions, connectives (¬, ∧, ∨, →, ↔) and brackets  for identification of subformulas. Usage of other symbols are invalid.The output is printed as binary tree.
