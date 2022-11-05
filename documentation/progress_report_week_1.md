@@ -20,3 +20,7 @@
   - Creating proposition validator
   - Starting to implement binary tree structure in Python and testing it with some simple propositional clauses
   - Simple UI
+
+### Hours used
+  - Friday 3
+  - Saturday 4
