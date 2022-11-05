@@ -2,7 +2,9 @@
 
 Data Structures and Algorithm course work at University of Helsinki
 
-### Weekly progress reports
+### Documents
+
+[Project specification](https://github.com/nellatuulikki/semantic_tree_generator_tira/blob/main/documentation/project_definition.md)
 
 [Progress report week 1](https://github.com/nellatuulikki/semantic_tree_generator_tira/blob/main/documentation/progress_report_week_1.md)
 
