@@ -16,7 +16,7 @@
 ### Questions
   - Maybe nice to have a comments about data structures I should use.
 
-### What I do next
+### Next week
   - Creating proposition validator
   - Starting to implement binary tree structure in Python and testing it with some simple propositional clauses
   - Simple UI
