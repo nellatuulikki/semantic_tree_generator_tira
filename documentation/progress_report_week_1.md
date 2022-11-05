@@ -15,7 +15,7 @@
   - This led that it was difficult to comment about time complexity, because I'm not sure if the data structures I'm planning to use are ideal for the project.
 
 ### Questions
-  - Nice to have a comments about data structures I'm planning to use.
+  - Nice to have comments about data structures I'm planning to use.
 
 ### Next week
   - Creating proposition validator
