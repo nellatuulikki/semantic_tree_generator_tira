@@ -10,7 +10,7 @@ The project utilizes branching algorithm that grows tree as follows
 The tree will be stored as binary tree (implemented as a class?), and/or utilizing Python hash table data structures like set and dict.
 
 ## Input and output
-The user will give an input string which consist of atomic propositions, connectives (¬, ∧, ∨, →, ↔) and brackets  for identification of subformulas. Usage of other symbols are invalid.The output is printed as binary tree.
+The user will give an input string which consist of atomic propositions, connectives (¬, ∧, ∨, →, ↔) and brackets  for identification of subformulas. Usage of other symbols are invalid. The output is printed as binary tree.
 
 ## Source
 - https://mysite.science.uottawa.ca/phofstra//MAT1348/TruthTrees.pdf
