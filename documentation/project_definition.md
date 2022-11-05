@@ -13,5 +13,5 @@ The tree will be stored as binary tree (implemented as a class?), and/or utilizi
 The user will give an input string which consist of atomic propositions, connectives (¬, ∧, ∨, →, ↔) and brackets  for identification of subformulas. Usage of other symbols are invalid.The output is printed as binary tree.
 
 ## Source
-https://mysite.science.uottawa.ca/phofstra//MAT1348/TruthTrees.pdf
-https://moodle.helsinki.fi/pluginfile.php/4415712/mod_resource/content/3/Johdatus_logiikkaan_1.pdf
+- https://mysite.science.uottawa.ca/phofstra//MAT1348/TruthTrees.pdf
+- https://moodle.helsinki.fi/pluginfile.php/4415712/mod_resource/content/3/Johdatus_logiikkaan_1.pdf
