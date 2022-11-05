@@ -16,3 +16,7 @@ The user will give an input string which consist of atomic propositions, connect
 - https://mysite.science.uottawa.ca/phofstra//MAT1348/TruthTrees.pdf
 - https://moodle.helsinki.fi/pluginfile.php/4415712/mod_resource/content/3/Johdatus_logiikkaan_1.pdf
 - https://raw.githubusercontent.com/hy-tira/tirakirja/master/tirakirja.pdf
+
+### Study program
+
+BCompSc
