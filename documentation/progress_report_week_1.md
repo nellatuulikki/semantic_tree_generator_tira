@@ -22,5 +22,4 @@
   - Simple UI
 
 ### Hours used
-  - Friday 3
-  - Saturday 4
+  -  5
