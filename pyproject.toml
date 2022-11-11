@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "semantic_tree_generator_tira"
+version = "0.1.0"
+description = ""
+authors = ["Nella <nella.nieminen@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+cowsay = "^5.0"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,14 +1,7 @@
-class SemanticTree:
-    def __init__(self, proposition):
-        self.proposition = proposition
-        self.main_connective = None
-        self.checked = False
-    
-    def update_check(self):
-        self.checked = True
+from entities.semantic_tree_node import SemanticTreeNode
 
 
-class SemanticTreeGenerator:
+class SemanticTreeService:
     def __init__(self, proposition):
         self.proposition = proposition
         self.semantic_tree = 'Testi'
