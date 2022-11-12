@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, request
-from services.semantic_tree_service import SemanticTreeService
+from src.services.semantic_tree_service import SemanticTreeService
 
 
 @app.route("/")

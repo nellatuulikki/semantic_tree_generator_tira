@@ -1,5 +1,5 @@
-from entities.semantic_tree_node import SemanticTreeNode
-from entities.proposition_parser import PropositionParser
+from src.entities.semantic_tree_node import SemanticTreeNode
+from src.entities.proposition_parser import PropositionParser
 
 class SemanticTreeService:
     def __init__(self, root_proposition):
