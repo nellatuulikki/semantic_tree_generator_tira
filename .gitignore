@@ -1,0 +1,8 @@
+.pytest_cache
+.coverage
+.htmlcov
+.idea
+__pycache__
+__MACOSX
+*.py[cod]
+*$py.class
