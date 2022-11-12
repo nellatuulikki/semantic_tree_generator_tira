@@ -18,13 +18,13 @@
 
 ### Questions
   - Any ideas about how to get the repo to CodeCov
-  - Difficulties running tests and software with same directory structure. Now app.py and routes are out of src directory. Is this ok, or should these files be under src directory?
+  - Difficulties running tests and software with same directory structure. Now app.py and routes.py are out of src directory. Is this ok, or should these files be under src directory?
+  - Cloning the repository takes long time, is there something wrong with the repo?
 
 
 ### Next week
   - Trying to get CodeCov working and software running at Fly.io
   - Manage to run software with more complex disjunctive and conjunctive clauses
-  - Getting 
 
 ### Hours used
   -  10
