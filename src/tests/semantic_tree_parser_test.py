@@ -1,11 +1,10 @@
 import unittest
-from entities.semantic_tree_node import SemanticTreeNode
+from entities.semantic_tree_node import SemanticTreeParser
 
 class TestPlayService(unittest.TestCase):
 
     def setUp(self):
-        self.node_with_proposition_symbol = SemanticTreeNode('p')
-        self.node_with_propostion = SemanticTreeNode('s∨p')
+        self.node_with_proposition_symbol = SemanticTreeParser('p')
 
     def test_update_checked(self):
         self.node_with_propostion.update_checked()
