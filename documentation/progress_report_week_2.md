@@ -17,7 +17,7 @@
   - Difficulties running tests and software with same directory structure. Now app.py and routes are out of src directory. Is this ok, or should these files be under src directory?
 
 ### Questions
-  - Any ideas about how get the repo to CodeCov
+  - Any ideas about how to get the repo to CodeCov
   - Difficulties running tests and software with same directory structure. Now app.py and routes are out of src directory. Is this ok, or should these files be under src directory?
 
 
