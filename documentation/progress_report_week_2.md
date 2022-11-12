@@ -17,7 +17,7 @@
   - Difficulties running tests and software with same directory structure. Now app.py and routes are out of src directory. Is this ok, or should these files be under src directory?
 
 ### Questions
-  - Any ideas about how to get the repo to CodeCov
+  - Any ideas about how to get the repo to CodeCov. (Or is there away to avoid CodeCov? In ohjelmistotekniikka course we used "poetry run invoke coverage-report for generating coverage reports)
   - Difficulties running tests and software with same directory structure. Now app.py and routes.py are out of src directory. Is this ok, or should these files be under src directory?
   - Cloning the repository takes long time, is there something wrong with the repo?
 
