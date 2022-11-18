@@ -1,24 +1,34 @@
-from src.entities.semantic_tree_node import SemanticTreeNode
-from src.entities.proposition_parser import PropositionParser
+from entities.semantic_tree_node import SemanticTreeNode
+from entities.proposition_parser import PropositionParser
 
 class SemanticTreeService:
     def __init__(self, root_proposition):
         self.root_proposition = root_proposition
-        self.semantic_tree = []
+        self.unchecked_nodes = []
+        self.proposition_to_add = None
 
     def generate_semantic_tree(self):
-        if self.validate_proposition(self.root_proposition):
-            root = SemanticTreeNode(self.root_proposition)
-            if root.is_proposition_symbol():
-                return root.proposition
+        propositions = PropositionParser.parse_proposition(self.root_proposition)
+        root_proposition = SemanticTreeNode(propositions)
+        self.unchecked_nodes.append(root_proposition.proposition)
+
+        while self.unchecked_nodes:
+            unchecked_proposition = self.unchecked_nodes.popleft()
+            self.traversal(root_proposition, unchecked_proposition)
+    
+    def traversal(self, root, unchecked_proposition):
+        if root:
+            if root.left_child == None:
+                left_child, right_child = root.generate_childs(unchecked_proposition)
+                if left_child.checked == False:
+                    self.unchecked_nodes.append(left_child.proposition)
+                if right_child.checked == False:
+                    self.unchecked_nodes.append(right_child.proposition)
+            elif root.left_child == 'X':
+                return 
             else:
-                root.generate_childs()
-                left_child = SemanticTreeNode(root.left_child)
-                right_child = SemanticTreeNode(root.right_child)
-                return [root.proposition, left_child.proposition, right_child.proposition]
-        else: 
-            return 'Not validate proposition'
+                self.traversal(root.left_child)
+                self.traversal(root.right_child)
 
     def validate_proposition(self, proposition):
         return PropositionParser(proposition).validate_proposition()
-

@@ -1,11 +1,42 @@
 class PropositionParser:
-    def __init__(self, proposition):
-        self.proposition = proposition
+    def __init__(self):
+        pass
     
-    def validate_proposition(self):
-        if self.proposition == "":
+    def validate_proposition(self, proposition):
+        if proposition == "":
             return False
-        elif self.proposition[0] in ['∨', '∧']:
+        elif proposition[0] in ['∨', '∧']:
             return False
         return True
          
+
+    def parse_proposition(self, proposition):
+        propositions = []
+        depth = 0
+        
+        for char in proposition:
+            if char == '(':
+                propositions.append([])
+                depth += 1
+            elif char == ')':
+                depth -= 1
+            else:
+                if depth > 0:
+                    propositions[-1].append(char)
+                else:
+                    propositions.append(char)
+        
+        return propositions
+
+    def split_proposition(self, proposition_list):
+        splitted_propositions = []
+        main_connective = None
+
+        for proposition in proposition_list:
+            if proposition not in ['v', '∧']:
+                splitted_propositions.append(proposition)
+            else:
+                main_connective = proposition
+
+        return splitted_propositions, main_connective
+    
