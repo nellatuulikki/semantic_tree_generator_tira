@@ -13,7 +13,8 @@ Start software (will be changed when software is available at Fly.io)
 - flask run
 - Open url
 
-## Run tests 
+## Run tests (will be changed)
 
+- poetry shell
 - coverage run --branch -m pytest src
 - coverage html
