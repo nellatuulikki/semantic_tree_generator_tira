@@ -11,6 +11,10 @@ def index():
 def result():
     proposition = request.form["proposition"]
     semantic_tree_generator = SemanticTreeService(proposition)
-    semantic_tree = semantic_tree_generator.generate_semantic_tree()
+    semantic_tree_boolean = semantic_tree_generator.generate_semantic_tree()
+    if semantic_tree_boolean:
+        semantic_tree = semantic_tree_generator.get_binary_list(semantic_tree_generator.root_proposition)
+    else:
+        semantic_tree = []
 
-    return render_template("result.html", propostion=proposition, semantic_tree=semantic_tree)
+    return render_template("result.html", propostion=proposition, semantic_tree_boolean=semantic_tree_boolean, semantic_tree=semantic_tree)

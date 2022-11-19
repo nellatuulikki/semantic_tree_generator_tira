@@ -1,34 +1,51 @@
-from entities.semantic_tree_node import SemanticTreeNode
-from entities.proposition_parser import PropositionParser
+from src.entities.semantic_tree_node import SemanticTreeNode
+from src.entities.proposition_parser import PropositionParser
+from collections import deque
 
 class SemanticTreeService:
-    def __init__(self, root_proposition):
-        self.root_proposition = root_proposition
-        self.unchecked_nodes = []
+    def __init__(self, root_proposition_string):
+        self.root_proposition_string = root_proposition_string
+        self.root_proposition = None
+        self.unchecked_nodes = deque()
         self.proposition_to_add = None
 
     def generate_semantic_tree(self):
-        propositions = PropositionParser.parse_proposition(self.root_proposition)
-        root_proposition = SemanticTreeNode(propositions)
-        self.unchecked_nodes.append(root_proposition.proposition)
+        if self.validate_proposition(self.root_proposition_string):
+            propositions = PropositionParser().parse_proposition(self.root_proposition_string)
+            self.root_proposition = SemanticTreeNode(propositions)
+            self.unchecked_nodes.append(self.root_proposition)
 
-        while self.unchecked_nodes:
-            unchecked_proposition = self.unchecked_nodes.popleft()
-            self.traversal(root_proposition, unchecked_proposition)
+            while self.unchecked_nodes:
+                unchecked_proposition = self.unchecked_nodes.popleft()
+                self.traversal(unchecked_proposition, unchecked_proposition)
+            
+            return True
+        
+        return False
     
     def traversal(self, root, unchecked_proposition):
         if root:
             if root.left_child == None:
-                left_child, right_child = root.generate_childs(unchecked_proposition)
+                left_child, right_child = root.generate_childs(unchecked_proposition.proposition)
                 if left_child.checked == False:
-                    self.unchecked_nodes.append(left_child.proposition)
+                    self.unchecked_nodes.append(left_child)
                 if right_child.checked == False:
-                    self.unchecked_nodes.append(right_child.proposition)
+                    self.unchecked_nodes.append(right_child)
+                return
             elif root.left_child == 'X':
                 return 
             else:
                 self.traversal(root.left_child)
                 self.traversal(root.right_child)
 
+            return
+
+    def get_binary_list(self, root):
+        if root is None:
+            return []
+    
+        return self.get_binary_list(root.left_child) + [root.proposition] + self.get_binary_list(root.right_child)
+
+
     def validate_proposition(self, proposition):
-        return PropositionParser(proposition).validate_proposition()
+        return PropositionParser().validate_proposition(proposition)

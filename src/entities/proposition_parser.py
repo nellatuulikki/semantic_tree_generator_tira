@@ -5,12 +5,14 @@ class PropositionParser:
     def validate_proposition(self, proposition):
         if proposition == "":
             return False
-        elif proposition[0] in ['∨', '∧']:
+        elif proposition[0] in ['v', '∧']:
             return False
         return True
          
 
     def parse_proposition(self, proposition):
+        """Parse proposition to list by paranthesis"""
+
         propositions = []
         depth = 0
         
