@@ -1,6 +1,7 @@
 import unittest
 from entities.proposition_parser import PropositionParser
 
+
 class TestPlayService(unittest.TestCase):
 
     def setUp(self):
@@ -19,8 +20,11 @@ class TestPlayService(unittest.TestCase):
         self.assertEqual(True, self.parser.validate_proposition('s∧p'))
 
     def test_parse_proposition(self):
-        self.assertEqual(['a', 'v', ['b', '∧', 'c']], self.parser.parse_proposition('av(b∧c)'))
-        self.assertEqual([['a', '∧', 'b'], 'v', ['b', '∧', 'c']], self.parser.parse_proposition('(a∧b)v(b∧c)'))
+        self.assertEqual(['a', 'v', ['b', '∧', 'c']],
+                         self.parser.parse_proposition('av(b∧c)'))
+        self.assertEqual([['a', '∧', 'b'], 'v', ['b', '∧', 'c']],
+                         self.parser.parse_proposition('(a∧b)v(b∧c)'))
 
     def test_split_proposition(self):
-        self.assertEqual(([['a', '∧', 'b'], ['b', '∧', 'c']], 'v'), self.parser.split_proposition([['a', '∧', 'b'], 'v', ['b', '∧', 'c']]))
+        self.assertEqual(([['a', '∧', 'b'], ['b', '∧', 'c']], 'v'), self.parser.split_proposition(
+            [['a', '∧', 'b'], 'v', ['b', '∧', 'c']]))

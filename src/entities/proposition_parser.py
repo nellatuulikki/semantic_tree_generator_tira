@@ -1,21 +1,21 @@
 class PropositionParser:
     def __init__(self):
         pass
-    
+
     def validate_proposition(self, proposition):
         if proposition == "":
             return False
-        elif proposition[0] in ['v', '∧']:
+        if proposition[0] in ['v', '∧']:
             return False
+
         return True
-         
 
     def parse_proposition(self, proposition):
         """Parse proposition to list by paranthesis"""
 
         propositions = []
         depth = 0
-        
+
         for char in proposition:
             if char == '(':
                 propositions.append([])
@@ -27,7 +27,7 @@ class PropositionParser:
                     propositions[-1].append(char)
                 else:
                     propositions.append(char)
-        
+
         return propositions
 
     def split_proposition(self, proposition_list):
@@ -41,4 +41,3 @@ class PropositionParser:
                 main_connective = proposition
 
         return splitted_propositions, main_connective
-    
