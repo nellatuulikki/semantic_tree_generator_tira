@@ -2,7 +2,7 @@
 
 ### What I have done this week?
   - Improved main classes
-  - Created better parser which can now parse propositions by paranthesis and split the proposition by main connective (either conjunction or disjunction)
+  - Created better parser which can now parse nested paranthesis clauses and split the proposition by main connective (either conjunction or disjunction)
   - Testing
   - Improved code quality with pylint
   - Created simple function for printing binary tree list
