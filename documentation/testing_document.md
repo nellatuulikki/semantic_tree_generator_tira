@@ -7,4 +7,4 @@ Unit testing is done with pytest.
 
 ## Code Quality
 Code quality has been checked with pylint. 
-https://user-images.githubusercontent.com/94007460/202848872-c3d611fc-33c7-4833-bda7-221fd08779f3.png
+![testing_data](https://user-images.githubusercontent.com/94007460/202849197-2d8d1b21-9c29-49c0-82bf-9c4f56b7b12d.png)
