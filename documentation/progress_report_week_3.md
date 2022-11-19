@@ -9,7 +9,7 @@
   - Didn't have time to get software running at Fly.io
 
 ### How the software has progressed 
-  - The software is now working with little bit more complex conjunction and disjunction proposition clauses (Tested with (a∧b)v(b∧c) and av(b∧c) )
+  - The software is now working with a little bit more complex conjunction and disjunction proposition clauses (Tested with (a∧b)v(b∧c) and av(b∧c) )
   - It has now better parsing algorithm
   - Started thinking about how the result will be presented
 
@@ -22,10 +22,10 @@
 
 ### Next week
   - Manage to run software with even more complex disjunctive and conjunctive clauses
-  - Add features for proposition that have 
+  - Add features for propositions that have negation symbol
   - Start writing docstrings for more complex functions
   - Improve binary tree result in UI
-  - Fixing conjunction to work with 
+  - Fixing conjunction connective symbol
 
 ### Hours used
   -  7-8 hours
