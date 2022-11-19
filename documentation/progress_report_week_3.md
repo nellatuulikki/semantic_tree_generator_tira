@@ -18,14 +18,14 @@
   - Getting software into production failed -> fly launch failed.
 
 ### Questions
-  - Any ideas about how to get the repo to CodeCov. (Or is there a way to avoid CodeCov? In ohjelmistotekniikka course we used "poetry run invoke coverage-report" for generating coverage reports)
+  - No questions
 
 ### Next week
   - Manage to run software with even more complex disjunctive and conjunctive clauses
   - Add features for propositions that have negation symbol
   - Start writing docstrings for more complex functions
   - Improve binary tree result in UI
-  - Fixing conjunction connective symbol
+  - Fixing conjunction connective symbol issue
 
 ### Hours used
   -  7-8 hours
