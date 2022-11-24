@@ -5,14 +5,12 @@ class PropositionParser:
     def validate_proposition(self, proposition):
         if proposition == "":
             return False
-        if proposition[0] in ['v', '∧']:
+        if proposition[0] in ['∨', '∧']:
             return False
 
         return True
 
     def parse_proposition(self, proposition):
-        """Parse proposition to list by paranthesis"""
-
         propositions = []
         depth = 0
 
@@ -31,13 +29,25 @@ class PropositionParser:
         return propositions
 
     def split_proposition(self, proposition_list):
-        splitted_propositions = []
+        right_proposition = []
+        left_proposition = []
         main_connective = None
 
         for proposition in proposition_list:
-            if proposition not in ['v', '∧']:
-                splitted_propositions.append(proposition)
+            if proposition not in ['∨', '∧'] and main_connective is None:
+                left_proposition.append(proposition)
+            elif proposition in ['∨', '∧'] and main_connective is None:
+                main_connective = proposition            
             else:
-                main_connective = proposition
+                right_proposition.append(proposition)
 
-        return splitted_propositions, main_connective
+        if isinstance(right_proposition, list):
+            if len(right_proposition) == 1:
+                right_proposition = right_proposition[0]
+
+        if isinstance(left_proposition, list):
+            if len(left_proposition) == 1:
+                left_proposition = left_proposition[0]        
+
+        return [left_proposition, right_proposition], main_connective
+

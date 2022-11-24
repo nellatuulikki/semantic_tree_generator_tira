@@ -9,8 +9,9 @@ class SemanticTreeNode:
         self.left_child = left_child
 
     def is_proposition_symbol(self):
+        print(self.proposition)
         for item in self.proposition:
-            if item in ['v', '∧']:
+            if item in ['∨', '∧']:
                 return False
 
         self.update_checked()
@@ -21,7 +22,8 @@ class SemanticTreeNode:
 
     def generate_childs(self, proposition):
         proposition_list, main_connective = PropositionParser().split_proposition(proposition)
-        if main_connective == 'v':
+
+        if main_connective == '∨':
             self.left_child = SemanticTreeNode(proposition_list[0])
             self.right_child = SemanticTreeNode(proposition_list[1])
             self.left_child.is_proposition_symbol()
