@@ -10,21 +10,35 @@ class PropositionParser:
 
         return True
 
+    def list_to_string(self, proposition_list):
+        proposition_string = ""
+        for item in proposition_list:
+            if isinstance(item, list):
+                proposition_string += '(' + self.list_to_string(item) + ')'
+            else:
+                proposition_string += item
+
+        return proposition_string    
+
+    def push(self, char, proposition_list, depth):
+        while depth:
+            proposition_list = proposition_list[-1]
+            depth -= 1
+        proposition_list.append(char)
+        
+
     def parse_proposition(self, proposition):
         propositions = []
         depth = 0
 
         for char in proposition:
             if char == '(':
-                propositions.append([])
+                self.push([], propositions, depth)
                 depth += 1
             elif char == ')':
                 depth -= 1
             else:
-                if depth > 0:
-                    propositions[-1].append(char)
-                else:
-                    propositions.append(char)
+                self.push(char, propositions, depth)
 
         return propositions
 

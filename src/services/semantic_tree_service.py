@@ -26,7 +26,6 @@ class SemanticTreeService:
         return False
 
     def traversal(self, root, unchecked_proposition):
-        print(root, unchecked_proposition)
         if root:
             if root.left_child is None:
                 left_child, right_child = root.generate_childs(
