@@ -1,7 +1,7 @@
 # Testing document
 
 ## Unit testing
-Unit testing is done with pytest. 
+Unit testing is done with pytest. Testing result is little bit lower than last week.
 
 ![testi_raportti_vk4](https://user-images.githubusercontent.com/94007460/204107975-b8230ee0-2eb5-4839-aacd-e302ef04327a.png)
 
