@@ -14,6 +14,7 @@ def result():
     semantic_tree_boolean = semantic_tree_generator.generate_semantic_tree()
     if semantic_tree_boolean:
         semantic_tree = semantic_tree_generator.get_binary_list(semantic_tree_generator.root_proposition)
+        semantic_tree_generator.get_bfs()
     else:
         semantic_tree = []
 
