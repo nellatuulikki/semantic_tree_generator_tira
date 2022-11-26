@@ -1,10 +1,9 @@
 <a href="/">Back to front page</a>
 <br>
 
-{% if semantic_tree_boolean %}
-    Semantic tree found for propostion {{ proposition }}
-    <br>
-    {{ semantic_tree }}
-{% else %}
-    Semantic tree found for propostion {{ proposition }}
-{% endif %}
+Semantic tree found for propostion {{ proposition }}
+{% for semantic_tree in semantic_tree_list %}
+<br>
+{{ semantic_tree }}
+{% endfor %}
+

@@ -19,7 +19,11 @@ class TestPlayService(unittest.TestCase):
             False, self.node_with_propostion.is_proposition_symbol())
 
     def test_generate_childs(self):
-        node_with_conjunction = SemanticTreeNode([['a', '∧', 'b'], 'v', ['b', '∧', 'c']])
-        node_with_conjunction.generate_childs([['a', '∧', 'b'], 'v', ['b', '∧', 'c']])
-        self.assertEqual(['b', '∧', 'c'], node_with_conjunction.right_child.proposition)
-        self.assertEqual(['a', '∧', 'b'], node_with_conjunction.left_child.proposition)
+        node_with_conjunction = SemanticTreeNode(
+            [['a', '∧', 'b'], 'v', ['b', '∧', 'c']])
+        node_with_conjunction.generate_childs(
+            [['a', '∧', 'b'], 'v', ['b', '∧', 'c']])
+        self.assertEqual(
+            ['b', '∧', 'c'], node_with_conjunction.right_child.proposition)
+        self.assertEqual(
+            ['a', '∧', 'b'], node_with_conjunction.left_child.proposition)
