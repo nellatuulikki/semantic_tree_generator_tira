@@ -13,7 +13,7 @@ Code quality has been checked with pylint. There is still room for improvement o
 
 ## Performance testing
 
-Software has been tested with proposition clauses that has conjunction and disjunction as connectives. Also, some proposition clauses with negations have been tested. 
+Software has been tested with proposition clauses that has conjunctions and disjunctions as connectives. Also, some proposition clauses with negations have been tested. 
 (a∨b)∧(b∨c)
 ¬(a∧b)∨(b∧c)
 
