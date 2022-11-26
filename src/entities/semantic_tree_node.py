@@ -43,7 +43,7 @@ class SemanticTreeNode:
         Returns:
             Two SemanticTreeNodes
 
-        """
+        """        
         proposition_list, main_connective, negation = self.proposition_parser.split_proposition(
             proposition)
         if main_connective == '∨':

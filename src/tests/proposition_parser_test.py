@@ -11,7 +11,7 @@ class TestPlayService(unittest.TestCase):
         self.assertEqual(False, self.parser.validate_proposition(""))
 
     def test_validate_proposition_with_incorrect_proposition(self):
-        self.assertEqual(False, self.parser.validate_proposition('vs'))
+        self.assertEqual(False, self.parser.validate_proposition('∨s'))
 
     def test_validate_proposition_with_correct_propositions(self):
         self.assertEqual(True, self.parser.validate_proposition('s∨p'))
@@ -26,5 +26,5 @@ class TestPlayService(unittest.TestCase):
                          self.parser.parse_proposition('(a∧b)v(b∧c)'))
 
     def test_split_proposition(self):
-        self.assertEqual(([['a', '∧', 'b'], ['b', '∧', 'c']], 'v'), self.parser.split_proposition(
-            [['a', '∧', 'b'], 'v', ['b', '∧', 'c']]))
+        self.assertEqual(([['a', '∧', 'b'], ['b', '∧', 'c']], '∨', False), self.parser.split_proposition(
+            [['a', '∧', 'b'], '∨', ['b', '∧', 'c']]))

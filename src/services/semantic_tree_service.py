@@ -23,7 +23,7 @@ class SemanticTreeService:
 
             while self.unchecked_nodes:
                 unchecked_proposition = self.unchecked_nodes.popleft()
-                self.traversal(unchecked_proposition, unchecked_proposition)
+                self.generate_children(unchecked_proposition, unchecked_proposition)
 
             return True
 
@@ -41,7 +41,7 @@ class SemanticTreeService:
         """
         if root:
             if root.left_child is None:
-                left_child, right_child = root.generate_children(
+                left_child, right_child = root.insert_children(
                     unchecked_proposition.proposition)
                 if left_child.checked is False:
                     self.unchecked_nodes.append(left_child)
@@ -52,8 +52,8 @@ class SemanticTreeService:
             if root.left_child == 'X':
                 return
 
-            self.traversal(root.left_child, unchecked_proposition)
-            self.traversal(root.right_child, unchecked_proposition)
+            self.generate_children(root.left_child, unchecked_proposition)
+            self.generate_children(root.right_child, unchecked_proposition)
 
             return
 
