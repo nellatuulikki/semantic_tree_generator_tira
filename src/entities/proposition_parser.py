@@ -31,17 +31,32 @@ class PropositionParser:
     def split_proposition(self, proposition_list):
         right_proposition = []
         left_proposition = []
+        connective_list = ['∨', '∧', '→', '↔']
         main_connective = None
+        negation = False
 
         for proposition in proposition_list:
-            if proposition not in ['∨', '∧'] and main_connective is None:
+            if proposition not in connective_list and main_connective is None:
                 left_proposition.append(proposition)
-            elif proposition in ['∨', '∧'] and main_connective is None:
-                main_connective = proposition            
+            elif proposition in connective_list and main_connective is None:
+                main_connective = proposition
             else:
                 right_proposition.append(proposition)
 
-        if isinstance(right_proposition, list):
+            if proposition == "¬":
+                negation = True
+
+        # If main_connective is not found and negation is True,
+        # the proposition_list is probably in form ['¬', ['C', '∧', 'B']]
+        if main_connective == None and negation:
+            proposition, main_connective, _ = self.split_proposition(left_proposition.pop())
+            right_proposition = proposition.pop()
+            left_proposition = proposition.pop()
+        else:
+            negation = False
+            
+
+        if (right_proposition, list):
             if len(right_proposition) == 1:
                 right_proposition = right_proposition[0]
 
@@ -49,5 +64,4 @@ class PropositionParser:
             if len(left_proposition) == 1:
                 left_proposition = left_proposition[0]        
 
-        return [left_proposition, right_proposition], main_connective
-
+        return [left_proposition, right_proposition], main_connective, negation
