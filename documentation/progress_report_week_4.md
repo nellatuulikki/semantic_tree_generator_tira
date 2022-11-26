@@ -6,7 +6,7 @@
   - Added features for proposition that have negations
   - Improved code quality with pylint
   - Created Breadth-First Search algorithm to help printing the binary tree
-  - Fixing conjunction connective symbol issue
+  - Conjunction connective symbol bug fixed
   - Didn't have time to get software running at Fly.io
 
 ### How the software has progressed 
