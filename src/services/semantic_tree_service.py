@@ -41,12 +41,15 @@ class SemanticTreeService:
         """
         if root:
             if root.left_child is None:
-                left_child, right_child = root.insert_children(
+                children = root.insert_children(
                     unchecked_proposition.proposition)
-                if left_child.checked is False:
-                    self.unchecked_nodes.append(left_child)
-                if right_child.checked is False:
-                    self.unchecked_nodes.append(right_child)
+
+                children = list(children)
+                while children:
+                    child = children.pop()
+                    child.is_proposition_symbol()
+                    if child.checked is False:
+                        self.unchecked_nodes.append(child)
                 return
 
             if root.left_child == 'X':
