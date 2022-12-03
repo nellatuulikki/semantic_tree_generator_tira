@@ -75,7 +75,7 @@ class PropositionParser:
 
         return propositions
 
-    def split_proposition(self, proposition_list):
+    def split_proposition(self, proposition_list, depth = 0):
         right_proposition = []
         left_proposition = []
         connective_list = ['∨', '∧', '→', '↔']
@@ -95,15 +95,16 @@ class PropositionParser:
 
         # If main_connective is not found and negation is True,
         # the proposition_list is probably in form ['¬', ['C', '∧', 'B']]
-        if main_connective is None and negation:
+        if main_connective is None and negation and depth == 0:
+            depth += 1
             proposition, main_connective, _ = self.split_proposition(
-                left_proposition.pop())
+                left_proposition.pop(), depth)
             right_proposition = proposition.pop()
             left_proposition = proposition.pop()
         else:
             negation = False
 
-        if (right_proposition, list):
+        if isinstance(right_proposition, list):
             if len(right_proposition) == 1:
                 right_proposition = right_proposition[0]
 

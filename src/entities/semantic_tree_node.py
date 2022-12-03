@@ -14,6 +14,9 @@ class SemanticTreeNode:
 
     def is_proposition_symbol(self):
         """ Checks if proposition variable is proposition symbol.
+            Proposition variable is proposition symbol if it has 
+            one of the main connectives (∨, ∧, →, ↔) or it is a
+            nested listed
 
         Returns:
             Boolean to identify if proposition is proposition symbol
@@ -41,7 +44,7 @@ class SemanticTreeNode:
             proposition = Proposition list
 
         Returns:
-            Two SemanticTreeNodes
+            list of SemanticTreeNodes
 
         """        
         proposition_list, main_connective, negation = self.proposition_parser.split_proposition(
@@ -58,13 +61,15 @@ class SemanticTreeNode:
         elif main_connective == '↔':
             children = self.insert_children_equivalent(
                 proposition_list, negation)
+        elif main_connective is None and negation == True: 
+            children = self.insert_children_negation(proposition_list)
 
         self.update_checked()
 
         return children
 
     def insert_children_disjunction(self, proposition_list, negation):
-        """ Applying disjunction rules for inserting children
+        """ Applies disjunction rules for inserting children
 
         Args:
             proposition_list = List of splitted propositions
@@ -84,17 +89,17 @@ class SemanticTreeNode:
                                                level=self.level + 1,
                                                left_child=SemanticTreeNode(negation_left_left, level=self.level + 2))
 
-            return self.left_child.left_child, self.left_child
+            return [self.left_child.left_child, self.left_child]
 
         self.left_child = SemanticTreeNode(
             proposition_list[0], level=self.level + 1)
         self.right_child = SemanticTreeNode(
             proposition_list[1], level=self.level + 1)
 
-        return self.right_child, self.left_child, 
+        return [self.right_child, self.left_child]
 
     def insert_children_conjunction(self, proposition_list, negation):
-        """ Applying conjunction rules for inserting children
+        """ Applies conjunction rules for inserting children
         
         Args:
             proposition_list = List of splitted propositions
@@ -115,15 +120,26 @@ class SemanticTreeNode:
             self.right_child = SemanticTreeNode(
                 negation_right, level=self.level + 1)
 
-            return self.right_child, self.left_child
+            return [self.right_child, self.left_child]
 
         self.left_child = SemanticTreeNode(
             proposition_list[0], level=self.level + 1,
             left_child=SemanticTreeNode(proposition_list[1], level=self.level + 2))
 
-        return self.left_child.left_child, self.left_child
+        return [self.left_child.left_child, self.left_child]
 
     def insert_children_implication(self,proposition_list, negation):
+        """ Applies implication rules for inserting children
+        
+        Args:
+            proposition_list = List of splitted propositions
+            negation = Boolean to identify if negation rule should be used 
+
+        Returns:
+            Two SemanticTreeNodes
+        
+        """
+
         if negation:
             negation_left_left = ["¬"]
             negation_left_left.append(proposition_list[1])
@@ -131,7 +147,7 @@ class SemanticTreeNode:
             proposition_list[0], level=self.level + 1,
             left_child=SemanticTreeNode(negation_left_left, level=self.level + 2))
 
-            return self.left_child.left_child, self.left_child
+            return [self.left_child.left_child, self.left_child]
 
         negation_left = ["¬"]
         negation_left.append(proposition_list[0])
@@ -141,9 +157,19 @@ class SemanticTreeNode:
             proposition_list[1], level=self.level + 1)
         self.update_checked()
 
-        return self.right_child, self.left_child
+        return [self.right_child, self.left_child]
 
     def insert_children_equivalent(self,proposition_list, negation):
+        """ Applies implication rules for inserting children
+        
+        Args:
+            proposition_list = List of splitted propositions
+            negation = Boolean to identify if negation rule should be used 
+
+        Returns:
+            Four SemanticTreeNodes
+        
+        """
         if negation:
             negation_right = ["¬"]
             negation_left_left = ["¬"]
@@ -160,7 +186,7 @@ class SemanticTreeNode:
                 left_child=SemanticTreeNode(proposition_list[1], level=self.level + 2),
                 level=self.level + 1)
             
-            return self.left_child.left_child, self.right_child.left_child, self.right_child, self.left_child
+            return [self.left_child.left_child, self.right_child.left_child, self.right_child, self.left_child]
 
         negation_right = ["¬"]
         negation_right_left = ["¬"]
@@ -177,5 +203,25 @@ class SemanticTreeNode:
             left_child=SemanticTreeNode(negation_right_left, level=self.level + 2),
             level=self.level + 1)
 
-        return self.left_child.left_child, self.right_child.left_child, self.right_child, self.left_child
+        return [self.left_child.left_child, self.right_child.left_child, self.right_child, self.left_child]
+
+    def insert_children_negation(self, proposition_list):
+        """ Applies double negation rule for inserting children
+        
+        Args:
+            proposition_list = List of splitted propositions
+            negation = Boolean to identify if negation rule should be used 
+
+        Returns:
+            Four SemanticTreeNodes
+        
+        """
+        proposition_list.pop()
+        proposition = proposition_list.pop()
+        proposition = proposition.pop()
+
+        self.left_child = SemanticTreeNode(proposition, level=self.level + 1)
+        self.left_child.update_checked()
+
+        return [self.left_child]
 

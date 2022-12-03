@@ -44,7 +44,6 @@ class SemanticTreeService:
                 children = root.insert_children(
                     unchecked_proposition.proposition)
 
-                children = list(children)
                 while children:
                     child = children.pop()
                     child.is_proposition_symbol()
