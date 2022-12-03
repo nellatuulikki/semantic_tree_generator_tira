@@ -8,7 +8,7 @@ Unit testing is done with pytest. Testing result is little bit lower than last w
 ## Code Quality
 Code quality has been checked with pylint. There is still room for improvement on code quality.
 
-![testi_raportti_vk4](https://user-images.githubusercontent.com/94007460/205436374-7379b60e-fdef-471a-a8dd-45606c6f2807.png)
+![pylint_vk5](https://user-images.githubusercontent.com/94007460/205436394-8aa51274-e562-4543-80d3-7b96aceddb55.png)
 
 ## Performance testing
 
