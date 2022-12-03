@@ -24,15 +24,6 @@ class TestPlayService(unittest.TestCase):
         result = semantic_tree_service.generate_semantic_tree()
         self.assertEqual(result, False)
 
-    def test_get_binary_list(self):
-        semantic_tree_service = SemanticTreeService(
-            root_proposition_string='(a∧b)∨(b∧c)')
-        semantic_tree_service.generate_semantic_tree()
-        result = semantic_tree_service.get_binary_tree_list(
-            semantic_tree_service.root_proposition)
-        self.assertEqual(['b', 'a', ['a', '∧', 'b'], [['a', '∧', 'b'], '∨', [
-                         'b', '∧', 'c']], 'c', 'b', ['b', '∧', 'c']], result)
-
     def test_get_bfs(self):
         semantic_tree_service = SemanticTreeService(
             root_proposition_string='a∧b')

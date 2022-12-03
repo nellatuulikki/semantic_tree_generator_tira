@@ -4,10 +4,10 @@ class PropositionParser:
 
     def validate_proposition(self, proposition):
         """ Validates that proposition is in correct format
-        
+
         Args:
             proposition = proposition string
-        
+
         Returns:
             Boolean variable
 
@@ -21,10 +21,10 @@ class PropositionParser:
 
     def list_to_string(self, proposition_list):
         """ Converts proposition_list to string and adds parenthesis
-        
+
         Args:
             proposition_list = proposition clause as list
-        
+
         Returns:
             proposition_string = proposition clause as string
 
@@ -41,11 +41,11 @@ class PropositionParser:
     def search_depth(self, char, proposition_list, depth):
         """ Finds  the deepest list of the nested list and adds
             char to that
-        
+
         Args:
             char: Proposition symbol or connective
             depth: Measures how deep is nested list
-        
+
         """
         while depth:
             proposition_list = proposition_list[-1]
@@ -54,7 +54,7 @@ class PropositionParser:
 
     def parse_proposition(self, proposition):
         """ Parses proposition to nested list
-        
+
         Args:
             proposition = proposition clause as a string
 
@@ -75,7 +75,7 @@ class PropositionParser:
 
         return propositions
 
-    def split_proposition(self, proposition_list, depth = 0):
+    def split_proposition(self, proposition_list, depth=0):
         right_proposition = []
         left_proposition = []
         connective_list = ['∨', '∧', '→', '↔']

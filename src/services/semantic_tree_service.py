@@ -12,7 +12,7 @@ class SemanticTreeService:
     def generate_semantic_tree(self):
         """" Validates proposition, calls proposition parser and generates
             binary tree if proposition is valid.
-        
+
         Returns:
             Boolean to identify if semantic tree is created
         """
@@ -23,7 +23,8 @@ class SemanticTreeService:
 
             while self.unchecked_nodes:
                 unchecked_proposition = self.unchecked_nodes.popleft()
-                self.generate_children(unchecked_proposition, unchecked_proposition)
+                self.generate_children(
+                    unchecked_proposition, unchecked_proposition)
 
             return True
 
@@ -31,7 +32,7 @@ class SemanticTreeService:
 
     def generate_children(self, root, unchecked_proposition):
         """ Examines if children should be inserted into a node
-        
+
         Args:
             root = SemanticTreeNode
             unchecked_proposition = SemanticTreeNode
@@ -59,22 +60,13 @@ class SemanticTreeService:
 
             return
 
-    def get_binary_tree_list(self, root):
-        """ Old function for printing binary tree. Will be removed next week
-        
-        """
-        if root is None:
-            return []
-
-        return self.get_binary_tree_list(root.left_child) + [root.proposition] + self.get_binary_tree_list(root.right_child)
-
     def get_bfs(self):
-        """ Applying Breadth-First Search algorithm for printing binary tree.
+        """ Applies Breadth-First Search algorithm for printing binary tree.
 
         Returns:
             semantic_tree_string_list = List of proposition strings per
                                         tree height
-        
+
         """
         visited = []
         queue = deque()
@@ -110,7 +102,7 @@ class SemanticTreeService:
 
     def validate_proposition(self, proposition):
         """ Calls proposition parser for proposition validation
-        
+
         Args:
             Boolean variable to identify if proposition is valid
 
