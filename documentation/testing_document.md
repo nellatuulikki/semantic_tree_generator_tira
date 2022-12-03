@@ -3,13 +3,12 @@
 ## Unit testing
 Unit testing is done with pytest. Testing result is little bit lower than last week.
 
-![testi_raportti_vk4](https://user-images.githubusercontent.com/94007460/204107975-b8230ee0-2eb5-4839-aacd-e302ef04327a.png)
-
+![testi_raportti_vk5](https://user-images.githubusercontent.com/94007460/205436365-965d208b-728a-49e7-a4c0-a4393a92dec9.png)
 
 ## Code Quality
 Code quality has been checked with pylint. There is still room for improvement on code quality.
 
-![pylint_vk4](https://user-images.githubusercontent.com/94007460/204107968-da117fcb-04e3-46ac-8d50-60cf93794711.png)
+![testi_raportti_vk4](https://user-images.githubusercontent.com/94007460/205436374-7379b60e-fdef-471a-a8dd-45606c6f2807.png)
 
 ## Performance testing
 
