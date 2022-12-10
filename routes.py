@@ -18,6 +18,6 @@ def result():
         semantic_tree_list = []
 
     return render_template("result.html",
-                            propostion=proposition,
+                            propostion=semantic_tree_generator.root_proposition_string,
                             semantic_tree_boolean=semantic_tree_boolean,
                             semantic_tree_list=semantic_tree_list)

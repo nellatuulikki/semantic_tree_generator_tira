@@ -14,7 +14,7 @@ class SemanticTreeNode:
 
     def is_proposition_symbol(self):
         """ Checks if proposition variable is proposition symbol.
-            Proposition variable is not proposition symbol if it has 
+            Proposition variable is not proposition symbol if it has
             one of the main connectives (∨, ∧, →, ↔) or it is a
             nested listed
 
@@ -74,7 +74,7 @@ class SemanticTreeNode:
 
         Args:
             proposition_list = List of splitted propositions
-            negation = Boolean to identify if negation rule should be used 
+            negation = Boolean to identify if negation rule should be used
 
         Returns:
             Two SemanticTreeNodes
@@ -104,7 +104,7 @@ class SemanticTreeNode:
 
         Args:
             proposition_list = List of splitted propositions
-            negation = Boolean to identify if negation rule should be used 
+            negation = Boolean to identify if negation rule should be used
 
         Returns:
             Two SemanticTreeNodes
@@ -134,7 +134,7 @@ class SemanticTreeNode:
 
         Args:
             proposition_list = List of splitted propositions
-            negation = Boolean to identify if negation rule should be used 
+            negation = Boolean to identify if negation rule should be used
 
         Returns:
             Two SemanticTreeNodes
@@ -165,7 +165,7 @@ class SemanticTreeNode:
 
         Args:
             proposition_list = List of splitted propositions
-            negation = Boolean to identify if negation rule should be used 
+            negation = Boolean to identify if negation rule should be used
 
         Returns:
             Four SemanticTreeNodes
@@ -221,7 +221,7 @@ class SemanticTreeNode:
 
         Args:
             proposition_list = List of splitted propositions
-            negation = Boolean to identify if negation rule should be used 
+            negation = Boolean to identify if negation rule should be used
 
         Returns:
             Four SemanticTreeNodes

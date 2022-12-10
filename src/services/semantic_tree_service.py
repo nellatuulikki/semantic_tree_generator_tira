@@ -81,20 +81,18 @@ class SemanticTreeService:
                 queue.append(node.right_child)
 
         semantic_tree_string = ""
-        semantic_tree_string_list = []
 
         tree_level = 1
         for node in visited:
             if tree_level < node.level:
-                semantic_tree_string_list.append(semantic_tree_string)
-                semantic_tree_string = ""
+                semantic_tree_string += f"\n"
                 tree_level = node.level
 
-            semantic_tree_string += node.proposition_string + " "
+            semantic_tree_string += "     " + node.proposition_string
 
-        semantic_tree_string_list.append(semantic_tree_string)
+        print(semantic_tree_string)
 
-        return semantic_tree_string_list
+        return semantic_tree_string
 
     def validate_proposition(self, proposition):
         """ Calls proposition parser for proposition validation

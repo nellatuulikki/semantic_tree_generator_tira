@@ -28,7 +28,7 @@ class TestPlayService(unittest.TestCase):
             ['b', '∧', 'c'], node_with_conjunction.right_child.proposition)
         self.assertEqual(
             ['a', '∧', 'b'], node_with_conjunction.left_child.proposition)
-    
+
     def test_generate_children_conjunction(self):
         x = SemanticTreeNode(['C', '∧' 'B'], level=1)
         children = x.insert_children(['C', '∧', 'B'])

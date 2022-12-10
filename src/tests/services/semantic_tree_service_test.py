@@ -26,18 +26,21 @@ class TestPlayService(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_generate_children(self):
-        semantic_tree_service = SemanticTreeService(root_proposition_string='A∨B')
-        semantic_tree_service.root_proposition = SemanticTreeNode(['A','∨','B'], level=1)
-        semantic_tree_service.generate_children(semantic_tree_service.root_proposition,
-                                                semantic_tree_service.root_proposition)
-        
-        self.assertEqual('A', semantic_tree_service.root_proposition.left_child.proposition)
-        self.assertEqual('B', semantic_tree_service.root_proposition.right_child.proposition)
-
-        SemanticTreeNode(['A','∧','B'], level=1)
+        semantic_tree_service = SemanticTreeService(
+            root_proposition_string='A∨B')
+        semantic_tree_service.root_proposition = SemanticTreeNode(
+            ['A', '∨', 'B'], level=1)
         semantic_tree_service.generate_children(semantic_tree_service.root_proposition,
                                                 semantic_tree_service.root_proposition)
 
+        self.assertEqual(
+            'A', semantic_tree_service.root_proposition.left_child.proposition)
+        self.assertEqual(
+            'B', semantic_tree_service.root_proposition.right_child.proposition)
+
+        SemanticTreeNode(['A', '∧', 'B'], level=1)
+        semantic_tree_service.generate_children(semantic_tree_service.root_proposition,
+                                                semantic_tree_service.root_proposition)
 
     def test_get_bfs(self):
         semantic_tree_service = SemanticTreeService(
