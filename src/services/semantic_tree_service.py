@@ -52,9 +52,6 @@ class SemanticTreeService:
                         self.unchecked_nodes.append(child)
                 return
 
-            if root.left_child == 'X':
-                return
-
             self.generate_children(root.left_child, unchecked_proposition)
             self.generate_children(root.right_child, unchecked_proposition)
 
@@ -94,7 +91,7 @@ class SemanticTreeService:
                 semantic_tree_string = ""
                 tree_level = node.level
 
-            semantic_tree_string += "   "+node.proposition_string
+            semantic_tree_string += node.proposition_string + " "
 
         semantic_tree_string_list.append(semantic_tree_string)
 

@@ -14,7 +14,7 @@ class PropositionParser:
         """
         if proposition == "":
             return False
-        if proposition[0] in ['∨', '∧']:
+        if proposition[0] in ['∨', '∧', '→', '↔']:
             return False
 
         return True
