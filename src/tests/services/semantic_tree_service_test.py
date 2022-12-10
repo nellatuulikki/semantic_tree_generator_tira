@@ -47,4 +47,4 @@ class TestPlayService(unittest.TestCase):
             root_proposition_string='(A∧B)∨(A∧C)')
         semantic_tree_service.generate_semantic_tree()
         result = semantic_tree_service.get_bfs()
-        self.assertEqual(['(A∧B)∨(A∧C) ', 'A∧B A∧C ', 'A A ', 'B C '], result)
+        self.assertEqual('     (A∧B)∨(A∧C)\n     A∧B     A∧C\n     A     A\n     B     C', result)

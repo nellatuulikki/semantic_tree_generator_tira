@@ -88,7 +88,7 @@ class SemanticTreeNode:
 
             self.left_child = SemanticTreeNode(negation_left,
                                                level=self.level + 1,
-                                               left_child=SemanticTreeNode(negation_left_left, level=self.level + 2))
+                                              left_child=SemanticTreeNode(negation_left_left, level=self.level + 2))
 
             return [self.left_child.left_child, self.left_child]
 
