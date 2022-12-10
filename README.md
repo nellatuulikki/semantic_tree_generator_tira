@@ -20,5 +20,7 @@ Data Structures and Algorithm course work at University of Helsinki
 
 [Testing report](https://github.com/nellatuulikki/semantic_tree_generator_tira/blob/main/documentation/testing_document.md)
 
+[Implementation report](https://github.com/nellatuulikki/semantic_tree_generator_tira/blob/main/documentation/Implementation.md)
+
 
 [User instructions](https://github.com/nellatuulikki/semantic_tree_generator_tira/blob/main/documentation/user_instructions.md)
