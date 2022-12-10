@@ -4,7 +4,7 @@
   - Almost all main features for creating binary tree nodes are done
   - Brainstorming how to present binary tree. Probably printing binary tree as a string using pre tag.
   - Improved semantic tree result in UI
-  - Working to get proper validator
+  - Trying to implement proper validator
   - Bugfix to double negation rule
   - Increased test coverage to 99%
   - Did peer review
