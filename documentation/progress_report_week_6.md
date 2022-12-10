@@ -69,4 +69,4 @@ def validate_proposition(proposition):
 
 
 ### Hours used
-  -  11 hours
+  - 8 hours
