@@ -230,8 +230,8 @@ class SemanticTreeNode:
         proposition_list.pop()
         proposition = proposition_list.pop()
         proposition = proposition.pop()
-
         self.left_child = SemanticTreeNode(proposition, level=self.level + 1)
-        self.left_child.update_checked()
+
+        self.left_child.is_proposition_symbol()
 
         return [self.left_child]

@@ -23,9 +23,9 @@ class SemanticTreeService:
 
             while self.unchecked_nodes:
                 unchecked_proposition = self.unchecked_nodes.popleft()
+
                 self.generate_children(
                     unchecked_proposition, unchecked_proposition)
-
             return True
 
         return False
@@ -44,7 +44,6 @@ class SemanticTreeService:
             if root.left_child is None:
                 children = root.insert_children(
                     unchecked_proposition.proposition)
-
                 while children:
                     child = children.pop()
                     child.is_proposition_symbol()
