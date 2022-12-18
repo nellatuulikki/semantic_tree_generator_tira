@@ -8,6 +8,8 @@ class SemanticTreeService:
         self.root_proposition_string = root_proposition_string
         self.root_proposition = None
         self.unchecked_nodes = deque()
+        self.tree_length = 0
+        self.semantic_tree_string = ""
 
     def generate_semantic_tree(self):
         """" Validates proposition, calls proposition parser and generates
@@ -40,6 +42,8 @@ class SemanticTreeService:
         Returns:semantic_tree_string_list
             None
         """
+
+
         if root:
             if root.left_child is None:
                 children = root.insert_children(
@@ -64,35 +68,22 @@ class SemanticTreeService:
                                         tree height
 
         """
-        visited = []
-        queue = deque()
-        visited.append(self.root_proposition)
-        queue.append(self.root_proposition)
+        self.print_tree(self.root_proposition, 0)
+        print(self.semantic_tree_string)
 
-        while queue:
-            node = queue.popleft()
+        return self.semantic_tree_string
+    
+    def print_tree(self, root, space):
+        if root == None:
+            return
 
-            if node.left_child is not None and node.left_child not in visited:
-                visited.append(node.left_child)
-                queue.append(node.left_child)
+        space += 10
+        self.print_tree(root.right_child, space)
 
-            if node.right_child is not None and node.right_child not in visited:
-                visited.append(node.right_child)
-                queue.append(node.right_child)
+        self.semantic_tree_string += f"\n"
+        self.semantic_tree_string += " "*(space-10)+root.proposition_string
 
-        semantic_tree_string = ""
-
-        tree_level = 1
-        for node in visited:
-            if tree_level < node.level:
-                semantic_tree_string += f"\n"
-                tree_level = node.level
-
-            semantic_tree_string += "     " + node.proposition_string
-
-        print(semantic_tree_string)
-
-        return semantic_tree_string
+        self.print_tree(root.left_child, space)
 
     def validate_proposition(self, proposition):
         """ Calls proposition parser for proposition validation
