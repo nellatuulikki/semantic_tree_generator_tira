@@ -7,10 +7,12 @@ class SemanticTreeNode:
         self.proposition_parser = PropositionParser()
         self.proposition_string = self.proposition_parser.list_to_string(
             proposition)
-        self.checked = False
+        self.proposition_symbol = False
         self.right_child = None
         self.left_child = left_child
         self.level = level
+
+        self.is_proposition_symbol()
 
     def is_proposition_symbol(self):
         """ Checks if proposition variable is proposition symbol.
@@ -23,17 +25,9 @@ class SemanticTreeNode:
         """
         for item in self.proposition:
             if item in ['∨', '∧', '→', '↔'] or isinstance(item, list):
-                return False
+                return 
 
-        self.update_checked()
-
-        return True
-
-    def update_checked(self):
-        """ Change self.checked to True
-
-        """
-        self.checked = True
+        self.proposition_symbol = True
 
     def insert_children(self, proposition):
         """ Calling proposition parser for finding main_connective
@@ -64,8 +58,6 @@ class SemanticTreeNode:
                 proposition_list, negation)
         elif main_connective is None and negation is True:
             children = self.insert_children_negation(proposition_list)
-
-        self.update_checked()
 
         return children
 
@@ -156,7 +148,6 @@ class SemanticTreeNode:
             negation_left, level=self.level + 1)
         self.right_child = SemanticTreeNode(
             proposition_list[1], level=self.level + 1)
-        self.update_checked()
 
         return [self.right_child, self.left_child]
 

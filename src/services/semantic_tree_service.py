@@ -8,11 +8,10 @@ class SemanticTreeService:
         self.root_proposition_string = root_proposition_string
         self.root_proposition = None
         self.unchecked_nodes = deque()
-        self.tree_length = 0
         self.semantic_tree_string = ""
 
     def generate_semantic_tree(self):
-        """" Validates proposition, calls proposition parser and generates
+        """ Validates proposition, calls proposition parser and generates
             binary tree if proposition is valid.
 
         Returns:
@@ -50,8 +49,7 @@ class SemanticTreeService:
                     unchecked_proposition.proposition)
                 while children:
                     child = children.pop()
-                    child.is_proposition_symbol()
-                    if child.checked is False:
+                    if child.proposition_symbol is False:
                         self.unchecked_nodes.append(child)
                 return
 
@@ -59,6 +57,25 @@ class SemanticTreeService:
             self.generate_children(root.right_child, unchecked_proposition)
 
             return
+
+    def closed_tree(self, root, root2leaf, root2leaf_str):
+        if root is None:
+            return
+
+        root2leaf.append(root)
+        root2leaf_str.append(root.proposition_string)
+
+        # Checks if literal's negation is in the same leaf
+        if root.left_child is None:
+            for node in root2leaf:
+                    if '¬'+node.proposition_string in root2leaf_str:
+                        root.left_child = SemanticTreeNode(proposition=['X'], level=root.level + 1)
+        else:
+            self.closed_tree(root.left_child, root2leaf, root2leaf_str)
+            self.closed_tree(root.right_child, root2leaf, root2leaf_str)
+
+        root2leaf.pop()
+        root2leaf_str.pop()
 
     def get_bfs(self):
         """ Applies Breadth-First Search algorithm for printing binary tree.
@@ -68,22 +85,25 @@ class SemanticTreeService:
                                         tree height
 
         """
-        self.print_tree(self.root_proposition, 0)
-        print(self.semantic_tree_string)
+        self.closed_tree(self.root_proposition, [], [])
+        self.tree_str(self.root_proposition, 0)
 
         return self.semantic_tree_string
     
-    def print_tree(self, root, space):
-        if root == None:
+    def tree_str(self, root, space):
+
+        if root is None:
             return
 
         space += 10
-        self.print_tree(root.right_child, space)
+        self.tree_str(root.right_child, space)
 
         self.semantic_tree_string += f"\n"
         self.semantic_tree_string += " "*(space-10)+root.proposition_string
+        if root.proposition_symbol is False:
+            self.semantic_tree_string += ' ✔'
 
-        self.print_tree(root.left_child, space)
+        self.tree_str(root.left_child, space)
 
     def validate_proposition(self, proposition):
         """ Calls proposition parser for proposition validation
