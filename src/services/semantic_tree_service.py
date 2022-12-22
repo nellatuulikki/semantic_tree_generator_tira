@@ -91,6 +91,7 @@ class SemanticTreeService:
         return self.semantic_tree_string
     
     def tree_str(self, root, space):
+        """" Return semantic tree in horizontal tree s"""
 
         if root is None:
             return

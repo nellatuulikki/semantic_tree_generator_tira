@@ -2,8 +2,64 @@
     Tested with propositions ¬(a∧b)∨(b∧c) and (a∧b)∨(b∧c)
     <br>
     Give proposition:
-    <input type="text" name="proposition">
+    <input type="text" name="proposition" id="proposition">
     <br>
     <input type="submit" value="Send">
 </form>
+
+<button id="neg" type="button">¬</button>
+<button id="dis" type="button">∨</button>
+<button id="imp" type="button">→</button>
+<button id="con" type="button">∧</button>
+<button id="equi" type="button">↔</button>
+
+
+<script>
+document.getElementById("neg").addEventListener(
+'click', add_negation, false);
+
+function add_negation() {
+  document.getElementById("proposition").value += 
+  "¬"
+}
+</script>
+
+<script>
+document.getElementById("dis").addEventListener(
+'click', addDisjunction, false);
+
+function addDisjunction() {
+  document.getElementById("proposition").value += 
+  "∨"
+}
+</script>
+
+<script>
+document.getElementById("imp").addEventListener(
+'click', addImplication, false);
+
+function addImplication() {
+  document.getElementById("proposition").value += 
+  "→"
+}
+</script>
+
+<script>
+document.getElementById("con").addEventListener(
+'click', addConjunction, false);
+
+function addConjunction() {
+  document.getElementById("proposition").value += 
+  "∧"
+}
+</script>
+
+<script>
+    document.getElementById("equi").addEventListener(
+    'click', addConjunction, false);
     
+    function addConjunction() {
+      document.getElementById("proposition").value += 
+      "↔"
+    }
+</script>
