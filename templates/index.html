@@ -1,12 +1,20 @@
+<style>
+h1 {color:black;}
+p {color:blue;}
+</style>
+
+<h1>Semantic Tree Generator</h1>
+
+This software generates a semantic tree for any standard propositional formula (e.g. ¬(a∧b)∨(b∧c) and (a∧b)∨(b∧c)) 
+
 <form action="/result" method="POST">
-    Tested with propositions ¬(a∧b)∨(b∧c) and (a∧b)∨(b∧c)
     <br>
-    Give proposition:
+    Enter a formula by standard propositional logic:
     <input type="text" name="proposition" id="proposition">
-    <br>
     <input type="submit" value="Send">
 </form>
 
+Add connectives
 <button id="neg" type="button">¬</button>
 <button id="dis" type="button">∨</button>
 <button id="imp" type="button">→</button>
@@ -19,8 +27,8 @@ document.getElementById("neg").addEventListener(
 'click', add_negation, false);
 
 function add_negation() {
-  document.getElementById("proposition").value += 
-  "¬"
+    document.getElementById("proposition").value += 
+    "¬"
 }
 </script>
 
@@ -29,8 +37,8 @@ document.getElementById("dis").addEventListener(
 'click', addDisjunction, false);
 
 function addDisjunction() {
-  document.getElementById("proposition").value += 
-  "∨"
+    document.getElementById("proposition").value += 
+    "∨"
 }
 </script>
 
@@ -39,8 +47,8 @@ document.getElementById("imp").addEventListener(
 'click', addImplication, false);
 
 function addImplication() {
-  document.getElementById("proposition").value += 
-  "→"
+    document.getElementById("proposition").value += 
+    "→"
 }
 </script>
 
@@ -49,8 +57,8 @@ document.getElementById("con").addEventListener(
 'click', addConjunction, false);
 
 function addConjunction() {
-  document.getElementById("proposition").value += 
-  "∧"
+    document.getElementById("proposition").value += 
+    "∧"
 }
 </script>
 
@@ -59,7 +67,7 @@ function addConjunction() {
     'click', addConjunction, false);
     
     function addConjunction() {
-      document.getElementById("proposition").value += 
-      "↔"
+        document.getElementById("proposition").value += 
+        "↔"
     }
 </script>
