@@ -1,0 +1,48 @@
+<form action="#">
+    <input type="text", id='proposition_text' />
+    <button>Search</button>  
+</form>
+<button id="neg" type="button">¬</button>
+<button id="dis" type="button">∨</button>
+<button id="imp" type="button">→</button>
+<button id="con" type="button">∧</button>
+
+<script>
+document.getElementById("neg").addEventListener(
+'click', add_negation, false);
+
+function add_negation() {
+  document.getElementById("proposition_text").value += 
+  "¬"
+}
+</script>
+
+<script>
+document.getElementById("dis").addEventListener(
+'click', addDisjunction, false);
+
+function addDisjunction() {
+  document.getElementById("proposition_text").value += 
+  "∨"
+}
+</script>
+
+<script>
+document.getElementById("imp").addEventListener(
+'click', addImplication, false);
+
+function addImplication() {
+  document.getElementById("proposition_text").value += 
+  "→"
+}
+</script>
+
+<script>
+document.getElementById("con").addEventListener(
+'click', addConjunction, false);
+
+function addConjunction() {
+  document.getElementById("proposition_text").value += 
+  "∧"
+}
+</script>
