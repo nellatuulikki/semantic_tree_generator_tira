@@ -31,5 +31,6 @@ Output is presented as binary tree.
 
 The software is combined by three main classes:
 - SemanticTreeService
+-   testi
 - SemanticTreeNode
 - PropositionalParser
