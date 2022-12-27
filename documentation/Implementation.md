@@ -31,6 +31,8 @@ Output is presented as binary tree.
 
 The software is combined by three main classes:
 - SemanticTreeService
-   -  testi
+   -  maintains software logics and therefore is responsible for creating a semantic tree. Also, it ables communication between UI and entity classes             (SemanticTreeNode and PropositionalParser)
 - SemanticTreeNode
+   -  contains and controls information of specific node and has a responsibility of features related to adding children to a node. 
 - PropositionalParser
+   - has a responsibility to transform propositional clauses to other datatypes, validation of proposition clause and splitting the propositional propositional clause by its main connective.
