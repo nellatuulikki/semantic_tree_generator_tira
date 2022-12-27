@@ -7,9 +7,13 @@
 <br>
 <br>
 
+{% if semantic_tree_boolean == True %}
 Semantic tree found for proposition {{ proposition }}
 <pre>
     <span class="inner-pre" style="font-size: 15px">
     {{ semantic_tree_list }}
     </span>
 </pre>
+{% else %}
+Invalid proposition formula {{ proposition }}
+{% endif %}

@@ -17,19 +17,26 @@ class SemanticTreeService:
         Returns:
             Boolean to identify if semantic tree is created
         """
-        if self.validate_proposition(self.root_proposition_string):
-            propositions = PropositionParser().parse_proposition(self.root_proposition_string)
-            self.root_proposition = SemanticTreeNode(propositions, level=1)
-            self.unchecked_nodes.append(self.root_proposition)
+        try:
+            if self.validate_proposition(self.root_proposition_string):
+                propositions = PropositionParser().parse_proposition(self.root_proposition_string)
+                self.root_proposition = SemanticTreeNode(propositions, level=1)
+                self.unchecked_nodes.append(self.root_proposition)
 
-            while self.unchecked_nodes:
-                unchecked_proposition = self.unchecked_nodes.popleft()
+                while self.unchecked_nodes:
+                    unchecked_proposition = self.unchecked_nodes.popleft()
 
-                self.generate_children(
-                    unchecked_proposition, unchecked_proposition)
-            return True
+                    self.generate_children(
+                        unchecked_proposition, unchecked_proposition)
+                return True
 
-        return False
+            return False
+        except Exception as e:
+            if e == "UnboundLocalError":
+                return False
+            else:
+                print(e)
+
 
     def generate_children(self, root, unchecked_proposition):
         """ Examines if children should be inserted into a node
