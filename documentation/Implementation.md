@@ -19,7 +19,7 @@ Semantic tree is constructed as binary tree. Every node has a proposition in lis
 
 ## Input/Output
 
-The valid proposition clauses consist of lower and upper case letters literals, connectives (∨, ∧, →, ↔) and negations ¬. All other symbols will generate error message and semantic tree is not generated (not implemented yet).
+The valid proposition clauses consist of lower and upper case letters literals, connectives (∨, ∧, →, ↔) and negations ¬. All other symbols will generate error message and semantic tree is not generated.
 Here are some examples of invalid inputs which will lead to error
 - (A∧B)) missmatch of paranthesis
 - ()
