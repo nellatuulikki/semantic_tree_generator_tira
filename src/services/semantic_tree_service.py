@@ -4,9 +4,10 @@ from src.entities.proposition_parser import PropositionParser
 
 
 class SemanticTreeService:
-    def __init__(self, root_proposition_string):
+    def __init__(self, root_proposition_string, proposition_parser = PropositionParser()):
         self.root_proposition_string = root_proposition_string
         self.root_proposition = None
+        self.proposition_parser = proposition_parser
         self.unchecked_nodes = deque()
         self.semantic_tree_string = ""
 
@@ -17,25 +18,28 @@ class SemanticTreeService:
         Returns:
             Boolean to identify if semantic tree is created
         """
-        try:
-            if self.validate_proposition(self.root_proposition_string):
-                propositions = PropositionParser().parse_proposition(self.root_proposition_string)
-                self.root_proposition = SemanticTreeNode(propositions, level=1)
-                self.unchecked_nodes.append(self.root_proposition)
+        #try:
+        print(self.root_proposition_string)
+        if self.validate_proposition(self.root_proposition_string):
+            propositions = self.proposition_parser.parse_proposition(self.root_proposition_string)
+            self.root_proposition = SemanticTreeNode(propositions, level=1)
+            self.unchecked_nodes.append(self.root_proposition)
 
-                while self.unchecked_nodes:
-                    unchecked_proposition = self.unchecked_nodes.popleft()
+            while self.unchecked_nodes:
+                unchecked_proposition = self.unchecked_nodes.popleft()
 
-                    self.generate_children(
-                        unchecked_proposition, unchecked_proposition)
-                return True
+                self.generate_children(
+                    unchecked_proposition, unchecked_proposition)
+            self.closed_tree(self.root_proposition, [], [])
+            
+            return True
 
-            return False
-        except Exception as e:
-            if e == "UnboundLocalError":
-                return False
-            else:
-                print(e)
+        return False
+        #except Exception as e:
+        #    if e == "UnboundLocalError":
+        #        return False
+        #    else:
+        #        print(e)                
 
 
     def generate_children(self, root, unchecked_proposition):
@@ -84,19 +88,6 @@ class SemanticTreeService:
         root2leaf.pop()
         root2leaf_str.pop()
 
-    def get_bfs(self):
-        """ Applies Breadth-First Search algorithm for printing binary tree.
-
-        Returns:
-            semantic_tree_string_list = List of proposition strings per
-                                        tree height
-
-        """
-        self.closed_tree(self.root_proposition, [], [])
-        self.tree_str(self.root_proposition, 0)
-
-        return self.semantic_tree_string
-    
     def tree_str(self, root, space):
         """" Return semantic tree in horizontal tree s"""
 

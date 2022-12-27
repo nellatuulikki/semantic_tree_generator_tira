@@ -7,6 +7,7 @@ authors = ["Nella <nella.nieminen@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 cowsay = "^5.0"
+invoke = "^1.7.3"
 
 [tool.poetry.dev-dependencies]
 

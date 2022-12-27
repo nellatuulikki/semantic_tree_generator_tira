@@ -6,18 +6,17 @@ class TestPlayService(unittest.TestCase):
 
     def setUp(self):
         self.node_with_proposition_symbol = SemanticTreeNode('p', level=1)
-        self.node_with_propostion = SemanticTreeNode('s∨p', level=1)
+        self.node_with_no_proposition_symbol = SemanticTreeNode('s∨p', level=1)
         self.disjunction = SemanticTreeNode(['C', '∨', 'B'], level=1)
 
-    def test_update_checked(self):
-        self.node_with_propostion.update_checked()
-        self.assertEqual(True, self.node_with_propostion.checked)
-
     def test_is_proposition_symbol(self):
+        self.node_with_proposition_symbol.is_proposition_symbol()
         self.assertEqual(
-            True, self.node_with_proposition_symbol.is_proposition_symbol())
+            True, self.node_with_proposition_symbol.proposition_symbol)
+        
+        self.node_with_no_proposition_symbol.is_proposition_symbol()
         self.assertEqual(
-            False, self.node_with_propostion.is_proposition_symbol())
+            False, self.node_with_no_proposition_symbol.proposition_symbol)
 
     def test_generate_childs(self):
         node_with_conjunction = SemanticTreeNode(

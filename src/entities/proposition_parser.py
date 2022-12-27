@@ -1,6 +1,6 @@
 class PropositionParser:
     def __init__(self):
-        pass
+        self.connectives = ['∨', '∧', '→', '↔']
 
     def validate_proposition(self, proposition):
         """ Validates that proposition is in correct format
@@ -14,7 +14,7 @@ class PropositionParser:
         """
         if proposition == "":
             return False
-        if proposition[0] in ['∨', '∧', '→', '↔']:
+        if proposition[0] in self.connectives:
             return False
 
         return True
@@ -75,17 +75,14 @@ class PropositionParser:
 
         return propositions
 
-    def split_proposition(self, proposition_list, depth=0):
+    def split_proposition(self, proposition_list, depth=0, main_connective = None, negation = False):
         right_proposition = []
         left_proposition = []
-        connective_list = ['∨', '∧', '→', '↔']
-        main_connective = None
-        negation = False
-
+        
         for proposition in proposition_list:
-            if proposition not in connective_list and main_connective is None:
+            if proposition not in self.connectives and main_connective is None:
                 left_proposition.append(proposition)
-            elif proposition in connective_list and main_connective is None:
+            elif proposition in self.connectives and main_connective is None:
                 main_connective = proposition
             else:
                 right_proposition.append(proposition)
