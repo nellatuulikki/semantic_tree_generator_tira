@@ -25,7 +25,7 @@ Here are some examples of invalid inputs which will lead to error
 - ()
 - (aa)
 
-Output is presented as binary tree. 
+Output is presented as binary tree utilizing Python's string variable.
 
 ## Class diagram
 
