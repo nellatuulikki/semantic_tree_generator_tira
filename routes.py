@@ -12,6 +12,7 @@ def result():
     proposition = request.form["proposition"]
     semantic_tree_generator = SemanticTreeService(proposition)
     semantic_tree_boolean = semantic_tree_generator.generate_semantic_tree()
+    
     if semantic_tree_boolean:
         semantic_tree_generator.tree_str(semantic_tree_generator.root_proposition, 0)
         semantic_tree_list = semantic_tree_generator.semantic_tree_string

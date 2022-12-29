@@ -10,6 +10,7 @@ class SemanticTreeNode:
         self.proposition_symbol = False
         self.right_child = None
         self.left_child = left_child
+        self.connectives = ['∨', '∧', '→', '↔']
         self.level = level
         self.is_proposition_symbol()
 
@@ -23,7 +24,7 @@ class SemanticTreeNode:
             Boolean to identify if proposition is proposition symbol
         """
         for item in self.proposition:
-            if item in ['∨', '∧', '→', '↔'] or isinstance(item, list):
+            if item in self.connectives or isinstance(item, list):
                 return 
 
         self.proposition_symbol = True
@@ -40,27 +41,28 @@ class SemanticTreeNode:
             list of SemanticTreeNodes
 
         """
-        proposition_list, main_connective, negation = self.proposition_parser.split_proposition(
+        print(proposition)
+        left_proposition, right_proposition, main_connective, negation = self.proposition_parser.split_proposition(
             proposition)
 
         if main_connective == '∨':
             children = self.insert_children_disjunction(
-                proposition_list, negation)
+                left_proposition, right_proposition, negation)
         elif main_connective == '∧':
             children = self.insert_children_conjunction(
-                proposition_list, negation)
+                left_proposition, right_proposition, negation)
         elif main_connective == '→':
             children = self.insert_children_implication(
-                proposition_list, negation)
+                left_proposition, right_proposition, negation)
         elif main_connective == '↔':
             children = self.insert_children_equivalent(
-                proposition_list, negation)
+                left_proposition, right_proposition, negation)
         elif main_connective is None and negation is True:
-            children = self.insert_children_negation(proposition_list)
+            children = self.insert_children_negation(left_proposition)
 
         return children
 
-    def insert_children_disjunction(self, proposition_list, negation, negation_left = ["¬"], negation_left_left = ["¬"]):
+    def insert_children_disjunction(self, left_proposition, right_proposition, negation):
         """ Applies disjunction rules for inserting children
 
         Args:
@@ -71,9 +73,12 @@ class SemanticTreeNode:
             Two SemanticTreeNodes
 
         """
+
         if negation:
-            negation_left.append(proposition_list[0])
-            negation_left_left.append(proposition_list[1])
+            negation_left = ["¬"]
+            negation_left_left = ["¬"]
+            negation_left.append(left_proposition)
+            negation_left_left.append(right_proposition)
 
             self.left_child = SemanticTreeNode(negation_left,
                                                level=self.level + 1,
@@ -82,13 +87,13 @@ class SemanticTreeNode:
             return [self.left_child.left_child, self.left_child]
 
         self.left_child = SemanticTreeNode(
-            proposition_list[0], level=self.level + 1)
+            left_proposition, level=self.level + 1)
         self.right_child = SemanticTreeNode(
-            proposition_list[1], level=self.level + 1)
+            right_proposition, level=self.level + 1)
 
         return [self.right_child, self.left_child]
 
-    def insert_children_conjunction(self, proposition_list, negation, negation_left = ["¬"], negation_right = ["¬"]):
+    def insert_children_conjunction(self, left_proposition, right_proposition, negation):
         """ Applies conjunction rules for inserting children
 
         Args:
@@ -99,9 +104,12 @@ class SemanticTreeNode:
             Two SemanticTreeNodes
 
         """
+
         if negation:
-            negation_left.append(proposition_list[0])
-            negation_right.append(proposition_list[1])
+            negation_left = ["¬"]
+            negation_right = ["¬"]
+            negation_left.append(left_proposition)
+            negation_right.append(right_proposition)
 
             self.left_child = SemanticTreeNode(
                 negation_left, level=self.level + 1)
@@ -111,12 +119,12 @@ class SemanticTreeNode:
             return [self.right_child, self.left_child]
 
         self.left_child = SemanticTreeNode(
-            proposition_list[0], level=self.level + 1,
-            left_child=SemanticTreeNode(proposition_list[1], level=self.level + 2))
+            left_proposition, level=self.level + 1,
+            left_child=SemanticTreeNode(right_proposition, level=self.level + 2))
 
         return [self.left_child.left_child, self.left_child]
 
-    def insert_children_implication(self, proposition_list, negation, negation_left_left = ["¬"]):
+    def insert_children_implication(self, left_proposition, right_proposition, negation):
         """ Applies implication rules for inserting children
 
         Args:
@@ -129,23 +137,24 @@ class SemanticTreeNode:
         """
 
         if negation:
-            negation_left_left.append(proposition_list[1])
+            negation_left_left = ["¬"]
+            negation_left_left.append(right_proposition)
             self.left_child = SemanticTreeNode(
-                proposition_list[0], level=self.level + 1,
+                left_proposition, level=self.level + 1,
                 left_child=SemanticTreeNode(negation_left_left, level=self.level + 2))
 
             return [self.left_child.left_child, self.left_child]
 
         negation_left = ["¬"]
-        negation_left.append(proposition_list[0])
+        negation_left.append(left_proposition)
         self.left_child = SemanticTreeNode(
             negation_left, level=self.level + 1)
         self.right_child = SemanticTreeNode(
-            proposition_list[1], level=self.level + 1)
+            right_proposition, level=self.level + 1)
 
         return [self.right_child, self.left_child]
 
-    def insert_children_equivalent(self, proposition_list, negation, negation_right = ["¬"], negation_left_left = ["¬"], negation_right_left = ["¬"]):
+    def insert_children_equivalent(self, left_proposition, right_proposition, negation):
         """ Applies implication rules for inserting children
 
         Args:
@@ -156,20 +165,22 @@ class SemanticTreeNode:
             Four SemanticTreeNodes
 
         """
-        if negation:
-            negation_right.append(proposition_list[0])
-            negation_left_left.append(proposition_list[1])
 
+        negation_right, negation_left = ["¬"], ["¬"]
+        negation_right.append(left_proposition)
+        negation_left.append(right_proposition)
+
+        if negation:
             self.left_child = SemanticTreeNode(
-                proposition_list[0],
+                left_proposition,
                 left_child=SemanticTreeNode(
-                    negation_left_left, level=self.level + 2),
+                    negation_left, level=self.level + 2),
                 level=self.level + 1)
 
             self.right_child = SemanticTreeNode(
                 negation_right,
                 left_child=SemanticTreeNode(
-                    proposition_list[1], level=self.level + 2),
+                    right_proposition, level=self.level + 2),
                 level=self.level + 1)
 
             return [self.left_child.left_child,
@@ -177,21 +188,16 @@ class SemanticTreeNode:
                     self.right_child,
                     self.left_child]
 
-        negation_right = ["¬"]
-        negation_right_left = ["¬"]
-        negation_right.append(proposition_list[0])
-        negation_right_left.append(proposition_list[1])
-
         self.left_child = SemanticTreeNode(
-            proposition_list[0],
+            left_proposition,
             left_child=SemanticTreeNode(
-                proposition_list[1], level=self.level + 2),
+                right_proposition, level=self.level + 2),
             level=self.level + 1)
 
         self.right_child = SemanticTreeNode(
             negation_right,
             left_child=SemanticTreeNode(
-                negation_right_left, level=self.level + 2),
+                negation_left, level=self.level + 2),
             level=self.level + 1)
 
         return [self.left_child.left_child,
@@ -199,7 +205,7 @@ class SemanticTreeNode:
                 self.right_child,
                 self.left_child]
 
-    def insert_children_negation(self, proposition_list):
+    def insert_children_negation(self, left_proposition):
         """ Applies double negation rule for inserting children
 
         Args:
@@ -210,10 +216,9 @@ class SemanticTreeNode:
             Four SemanticTreeNodes
 
         """
-        proposition_list.pop()
-        proposition = proposition_list.pop()
-        proposition = proposition.pop()
-        self.left_child = SemanticTreeNode(proposition, level=self.level + 1)
+
+        propositon_without_negation = left_proposition.pop()
+        self.left_child = SemanticTreeNode(propositon_without_negation, level=self.level + 1)
 
         self.left_child.is_proposition_symbol()
 

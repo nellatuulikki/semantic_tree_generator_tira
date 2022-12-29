@@ -14,9 +14,14 @@ class TestPlayService(unittest.TestCase):
         result = semantic_tree_service.generate_semantic_tree()
         self.assertEqual(result, True)
 
-    def test_generate_semantic_tree_with_invalid_proposition(self):
+    def test_generate_semantic_tree_with_invalid_propositions(self):
         semantic_tree_service = SemanticTreeService(
             root_proposition_string='∨a')
+        result = semantic_tree_service.generate_semantic_tree()
+        self.assertEqual(result, False)
+
+        semantic_tree_service = SemanticTreeService(
+            root_proposition_string='a∨(b∧c')
         result = semantic_tree_service.generate_semantic_tree()
         self.assertEqual(result, False)
 

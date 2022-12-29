@@ -55,36 +55,37 @@ class TestPlayService(unittest.TestCase):
 
     def test_insert_children_disjunction(self):
         x = SemanticTreeNode(['C', '∨', 'B'], level=1)
-        children = x.insert_children_disjunction(['C', 'B'], False)
+        children = x.insert_children_disjunction('C', 'B', False)
         self.assertEqual(
             ['B', 'C'], [children[0].proposition, children[1].proposition])
 
     def test_insert_children_disjunction_negation(self):
         x = SemanticTreeNode(['¬', ['C', '∨', 'B']], level=1)
-        children = x.insert_children_disjunction(['C', 'B'], True)
+        children = x.insert_children_disjunction('C', 'B', True)
         self.assertEqual([['¬', 'B'], ['¬', 'C']], [
                          children[0].proposition, children[1].proposition])
 
     def test_insert_children_conjunction(self):
         x = SemanticTreeNode(['C', '∧', 'B'], level=1)
-        children = x.insert_children_disjunction(['C', 'B'], False)
+        children = x.insert_children_disjunction('C', 'B', False)
         self.assertEqual(
             ['B', 'C'], [children[0].proposition, children[1].proposition])
 
     def test_insert_children_conjunction_negation(self):
         x = SemanticTreeNode(['C', '∧', 'B'], level=1)
-        children = x.insert_children_conjunction(['C', 'B'], True)
+        children = x.insert_children_conjunction('C', 'B', True)
         self.assertEqual([['¬', 'B'], ['¬', 'C']], [
                          children[0].proposition, children[1].proposition])
 
     def test_insert_children_negation(self):
         x = SemanticTreeNode(['¬', ['¬', 'B']], level=1)
-        children = x.insert_children_negation([['¬', 'B'], []])
-        self.assertEqual('B', children[0].proposition)
+        children = x.insert_children_negation(['¬', 'B'])
+        print(children[0].proposition_string)
+        self.assertEqual('B', children[0].proposition_string)
 
     def test_insert_children_equivalent(self):
         x = SemanticTreeNode(['A', '↔', 'B'], level=1)
-        children = x.insert_children_equivalent(['A', 'B'], False)
+        children = x.insert_children_equivalent('A', 'B', False)
         self.assertEqual(['B', ['¬', 'B'], ['¬', 'A'], 'A'],
                          [children[0].proposition,
                          children[1].proposition,
@@ -93,7 +94,7 @@ class TestPlayService(unittest.TestCase):
 
     def test_insert_children_equivalent_negation(self):
         x = SemanticTreeNode(['A', '↔', 'B'], level=1)
-        children = x.insert_children_equivalent(['A', 'B'], True)
+        children = x.insert_children_equivalent('A', 'B', True)
         self.assertEqual([['¬', 'B'], 'B', ['¬', 'A'], 'A'],
                          [children[0].proposition,
                          children[1].proposition,
@@ -102,12 +103,12 @@ class TestPlayService(unittest.TestCase):
 
     def test_insert_children_implication_negation(self):
         x = SemanticTreeNode(['¬', ['C', '→', 'B']], level=1)
-        children = x.insert_children_implication(['C', 'B'], True)
+        children = x.insert_children_implication('C', 'B', True)
         self.assertEqual([['¬', 'B'], 'C'], [
                          children[0].proposition, children[1].proposition])
 
     def test_insert_children_implication(self):
         x = SemanticTreeNode(['C', '→', 'B'], level=1)
-        children = x.insert_children_implication(['C', 'B'], False)
+        children = x.insert_children_implication('C', 'B', False)
         self.assertEqual(['B', ['¬', 'C']], [
                          children[0].proposition, children[1].proposition])

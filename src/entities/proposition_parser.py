@@ -1,9 +1,12 @@
 class PropositionParser:
     def __init__(self):
         self.connectives = ['∨', '∧', '→', '↔']
+        self.valid_symbols = '()∨∧→↔¬abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVXYZ'
+        self.alphabets = 'abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVXYZ'
 
     def validate_proposition(self, proposition):
-        """ Validates that proposition is in correct format
+        """ Validates that proposition is in correct format. Returns false 
+            if clause has incorrect characters or character in a wrong place
 
         Args:
             proposition = proposition string
@@ -14,7 +17,26 @@ class PropositionParser:
         """
         if proposition == "":
             return False
-        if proposition[0] in self.connectives:
+
+        prev_char = proposition[0]
+        depth = 0
+        
+        if prev_char not in self.alphabets and prev_char not in ['(',')','¬']:
+            return False
+        
+        for char in proposition[1:]:
+            if char == '(':
+                depth += 1
+            elif char == ')':
+                depth -= 1
+            elif (char in self.connectives and prev_char in self.connectives) or (char in self.alphabets and prev_char in self.alphabets) or (char not in self.valid_symbols):
+                return False
+            prev_char = char
+
+            if depth < 0:
+                return False
+
+        if depth != 0:        
             return False
 
         return True
@@ -61,8 +83,7 @@ class PropositionParser:
         Returns:
             propositions = proposition clause parsed to nested list
         """
-        propositions = []
-        depth = 0
+        propositions, depth  = [], 0
 
         for char in proposition:
             if char == '(':
@@ -75,10 +96,9 @@ class PropositionParser:
 
         return propositions
 
-    def split_proposition(self, proposition_list, depth=0, main_connective = None, negation = False):
-        right_proposition = []
-        left_proposition = []
-        
+    def split_proposition(self, proposition_list, depth=0, main_connective=None, negation=False):
+        right_proposition, left_proposition = [], []
+
         for proposition in proposition_list:
             if proposition not in self.connectives and main_connective is None:
                 left_proposition.append(proposition)
@@ -94,19 +114,17 @@ class PropositionParser:
         # the proposition_list is probably in form ['¬', ['C', '∧', 'B']]
         if main_connective is None and negation and depth == 0:
             depth += 1
-            proposition, main_connective, _ = self.split_proposition(
+            left_proposition, right_proposition, main_connective, _ = self.split_proposition(
                 left_proposition.pop(), depth)
-            right_proposition = proposition.pop()
-            left_proposition = proposition.pop()
         else:
             negation = False
 
         if isinstance(right_proposition, list):
             if len(right_proposition) == 1:
-                right_proposition = right_proposition[0]
+                right_proposition = right_proposition.pop()
 
         if isinstance(left_proposition, list):
             if len(left_proposition) == 1:
-                left_proposition = left_proposition[0]
+                left_proposition = left_proposition.pop()
 
-        return [left_proposition, right_proposition], main_connective, negation
+        return left_proposition, right_proposition, main_connective, negation

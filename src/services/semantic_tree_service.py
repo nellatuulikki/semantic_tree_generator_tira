@@ -4,7 +4,7 @@ from src.entities.proposition_parser import PropositionParser
 
 
 class SemanticTreeService:
-    def __init__(self, root_proposition_string, proposition_parser = PropositionParser()):
+    def __init__(self, root_proposition_string, proposition_parser=PropositionParser()):
         self.root_proposition_string = root_proposition_string
         self.root_proposition = None
         self.proposition_parser = proposition_parser
@@ -18,10 +18,12 @@ class SemanticTreeService:
         Returns:
             Boolean to identify if semantic tree is created
         """
-        #try:
+        # try:
         print(self.root_proposition_string)
-        if self.validate_proposition(self.root_proposition_string):
-            propositions = self.proposition_parser.parse_proposition(self.root_proposition_string)
+        if self.proposition_parser.validate_proposition(self.root_proposition_string):
+            
+            propositions = self.proposition_parser.parse_proposition(
+                self.root_proposition_string)
             self.root_proposition = SemanticTreeNode(propositions, level=1)
             self.unchecked_nodes.append(self.root_proposition)
 
@@ -31,16 +33,15 @@ class SemanticTreeService:
                 self.generate_children(
                     unchecked_proposition, unchecked_proposition)
             self.closed_tree(self.root_proposition, [], [])
-            
+
             return True
 
         return False
-        #except Exception as e:
+        # except Exception as e:
         #    if e == "UnboundLocalError":
         #        return False
         #    else:
-        #        print(e)                
-
+        #        print(e)
 
     def generate_children(self, root, unchecked_proposition):
         """ Examines if children should be inserted into a node
@@ -52,7 +53,6 @@ class SemanticTreeService:
         Returns:semantic_tree_string_list
             None
         """
-
 
         if root:
             if root.left_child is None:
@@ -79,8 +79,9 @@ class SemanticTreeService:
         # Checks if literal's negation is in the same leaf
         if root.left_child is None:
             for node in root2leaf:
-                    if '¬'+node.proposition_string in root2leaf_str:
-                        root.left_child = SemanticTreeNode(proposition=['X'], level=root.level + 1)
+                if '¬'+node.proposition_string in root2leaf_str:
+                    root.left_child = SemanticTreeNode(
+                        proposition=['X'], level=root.level + 1)
         else:
             self.closed_tree(root.left_child, root2leaf, root2leaf_str)
             self.closed_tree(root.right_child, root2leaf, root2leaf_str)
@@ -89,7 +90,6 @@ class SemanticTreeService:
         root2leaf_str.pop()
 
     def tree_str(self, root, space):
-        """" Return semantic tree in horizontal tree s"""
 
         if root is None:
             return
@@ -103,14 +103,3 @@ class SemanticTreeService:
             self.semantic_tree_string += ' ✔'
 
         self.tree_str(root.left_child, space)
-
-    def validate_proposition(self, proposition):
-        """ Calls proposition parser for proposition validation
-
-        Args:
-            Boolean variable to identify if proposition is valid
-
-        Return:
-
-        """
-        return PropositionParser().validate_proposition(proposition)
