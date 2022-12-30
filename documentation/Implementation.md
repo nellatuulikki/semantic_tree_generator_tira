@@ -25,7 +25,7 @@ The user will give propositional clause as string which will be then transformed
 
 ## Input/Output
 
-The valid proposition clauses consist of lower and upper case letters literals, connectives (∨, ∧, →, ↔) and negations ¬. All other symbols will generate error message and semantic tree is not generated. I tried to capture all errors by PropositionParser, but I couldn't figure out how I would have prevented them all, so I added exceptation handling in SemanticTreeService node so the code would never break.
+The valid proposition clauses consist of lower and upper case letters literals, connectives (∨, ∧, →, ↔) and negations ¬. All other symbols will generate error message and semantic tree is not generated. I tried to capture all errors by PropositionParser, but I couldn't figure out how I would have prevented them all, so I added exceptation handling in SemanticTreeService node so the software would never crash.
 
 Here are some examples of invalid inputs which will lead to error
 - (A∧B)) missmatch of paranthesis
