@@ -45,7 +45,7 @@ The software is combined by three main classes:
 - PropositionalParser
    - responsible for transforming propositional clauses to other datatypes, validation of proposition clause and splitting the propositional clause by its main connective.
 
-App module will start the software and creates the Flask object and import routes module. Routes module maintains the page address and communicates with page templates and the software logic. Page templates (two in this case) are found in templates directory. 
+App is the main module of the softwate and it starts the software and creates the Flask object and import routes module. Routes module maintains the page address and communicates with page templates and the software logic. Page templates (two in this case) are found in templates directory. 
 
 ## UI 
 
