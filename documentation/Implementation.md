@@ -9,7 +9,7 @@ In this program semantic tree will decompose the statement which is the
 
 ## Semantic Tree rules and examples
 
-Disjunction rule 
+Disjunction rule
 
 Conjunction rule
 
@@ -37,7 +37,7 @@ Here are some examples of invalid inputs which will lead to error
 
 Output is presented as binary tree utilizing Python's string variable. All decomposed proposition clauses are marked as ✔ and literals and those negations shouldn't have that symbol in any circumstances
 
-## Class diagram
+## Structure
 
 The software is combined by three main classes:
 - SemanticTreeService
@@ -46,3 +46,15 @@ The software is combined by three main classes:
    -  contains and information of a node and has all features related to adding children to a node. It also stores logic for all propositonal logic rules.
 - PropositionalParser
    - responsible for transforming propositional clauses to other datatypes, validation of proposition clause and splitting the propositional clause by its main connective.
+
+## UI 
+
+The software is deployed in Heroku. User can type letters and paranthesis but connectivis can be added by the buttons. User can return to the front page and give a new proposition.
+
+## Possible improvements
+
+- Propositions that don't branch are decomposed first -> would reduce branching
+- Checking if there is a negation of propositional clause already in the branch instead checking this after all nodes are added into the tree and done only for literals. 
+
+## Sources 
+Johdatus Logiikkaan 1 by Åsa Hirvonen
