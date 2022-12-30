@@ -11,13 +11,7 @@ After there are no more decomposable clauses, the semantic tree will be traversa
 
 ## Semantic Tree rules and examples
 
-Disjunction rule
-
-Conjunction rule
-
-Equivalent rule
-
-Implication rule
+The semantic tree is constructed by using these rules from propositional logic.
 
 ## Data structures and Time complexity
 
