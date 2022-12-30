@@ -33,6 +33,7 @@ Here are some examples of invalid inputs which will lead to error
 - (A∧B)) missmatch of paranthesis
 - (), (a∨)
 - (aa)
+- ¬¬b (Note! double negation should always have paranthesis them)
 
 Output is presented as binary tree utilizing Python's string variable. All decomposed proposition clauses are marked as ✔ and literals and those negations shouldn't have that symbol in any circumstances
 
