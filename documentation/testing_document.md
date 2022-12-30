@@ -5,6 +5,8 @@ The code is tested comprehensevily with unit testing utilizing pytest. Only the 
 
 ![testi_raportti_vk6](https://user-images.githubusercontent.com/94007460/206872033-bc68bf93-3e78-4cd9-b34e-968fbaf2cf79.png)
 
+The test can be repeated by following the instructions here.
+
 ## Code Quality
 Code quality has been checked with pylint. The code had couple pretty long functions (over 20 rows).
 
