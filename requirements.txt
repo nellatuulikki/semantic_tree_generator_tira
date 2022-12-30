@@ -62,7 +62,6 @@ requests-toolbelt==0.10.1
 SecretStorage==3.3.3
 shellingham==1.5.0
 six==1.16.0
--e git+ssh://git@github.com/joonakauranen/tiralabra-rsa.git@77931c8650d2118f0c435b4b3602bad02b414f98#egg=tiralabra_rsa
 tomli==2.0.1
 tomlkit==0.11.6
 trove-classifiers==2022.12.1
