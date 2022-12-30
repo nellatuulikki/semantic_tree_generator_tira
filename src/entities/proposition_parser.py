@@ -2,7 +2,7 @@ class PropositionParser:
     def __init__(self):
         self.connectives = ['∨', '∧', '→', '↔']
         self.valid_symbols = '()∨∧→↔¬abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVXYZ'
-        self.alphabets = 'abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVXYZ'
+        self.letters = 'abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVXYZ'
 
     def validate_proposition(self, proposition):
         """ Validates that proposition is in correct format. Returns false 
@@ -18,25 +18,29 @@ class PropositionParser:
         if proposition == "":
             return False
 
-        prev_char = proposition[0]
+        prev_char = None
         depth = 0
-        
-        if prev_char not in self.alphabets and prev_char not in ['(',')','¬']:
+
+        if proposition[0] not in self.letters and proposition[0] not in ['(', ')', '¬']:
             return False
-        
-        for char in proposition[1:]:
+        print(proposition)
+        for char in proposition:
+            print(char)
             if char == '(':
                 depth += 1
-            elif char == ')':
+            if char == ')':
                 depth -= 1
-            elif (char in self.connectives and prev_char in self.connectives) or (char in self.alphabets and prev_char in self.alphabets) or (char not in self.valid_symbols):
-                return False
-            prev_char = char
-
             if depth < 0:
                 return False
 
-        if depth != 0:        
+            if prev_char is None:
+                prev_char = char
+            elif (char in self.connectives and prev_char in self.connectives) or (char in self.letters and prev_char in self.letters) or (char not in self.valid_symbols) or (char == '¬' and prev_char == '¬'):
+                return False
+            prev_char = char
+
+
+        if depth != 0:
             return False
 
         return True
@@ -66,7 +70,7 @@ class PropositionParser:
 
         Args:
             char: Proposition symbol or connective
-            depth: Measures how deep is nested list
+            depth: The current depth of nested list
 
         """
         while depth:
@@ -81,9 +85,9 @@ class PropositionParser:
             proposition = proposition clause as a string
 
         Returns:
-            propositions = proposition clause parsed to nested list
+            propositions = proposition clause parsed to a nested list
         """
-        propositions, depth  = [], 0
+        propositions, depth = [], 0
 
         for char in proposition:
             if char == '(':
@@ -97,6 +101,20 @@ class PropositionParser:
         return propositions
 
     def split_proposition(self, proposition_list, depth=0, main_connective=None, negation=False):
+        """ Split proposition by it's main connective. If there is no main connective and 
+            negation is found, the main connective is search by recursively from a nested list.
+
+        Args:
+            proposition_list = proposition list to be splitted
+            depth = the current depth of nested list
+            main_connective = main_connective as a string
+            negation = Boolean
+
+        Returns:
+            left_proposition = list from left side of the decomposed proposition clause
+            right_proposition = list from right side of the decomposed proposition clause
+
+        """
         right_proposition, left_proposition = [], []
 
         for proposition in proposition_list:

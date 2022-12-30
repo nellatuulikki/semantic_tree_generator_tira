@@ -18,10 +18,10 @@ class SemanticTreeService:
         Returns:
             Boolean to identify if semantic tree is created
         """
-        # try:
+        #try:
         print(self.root_proposition_string)
         if self.proposition_parser.validate_proposition(self.root_proposition_string):
-            
+
             propositions = self.proposition_parser.parse_proposition(
                 self.root_proposition_string)
             self.root_proposition = SemanticTreeNode(propositions, level=1)
@@ -37,7 +37,7 @@ class SemanticTreeService:
             return True
 
         return False
-        # except Exception as e:
+        #except Exception as e:
         #    if e == "UnboundLocalError":
         #        return False
         #    else:

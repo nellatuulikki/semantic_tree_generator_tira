@@ -2,7 +2,7 @@ from src.entities.proposition_parser import PropositionParser
 
 
 class SemanticTreeNode:
-    def __init__(self, proposition, level, left_child=None, proposition_parser = PropositionParser()):
+    def __init__(self, proposition, level, left_child=None, proposition_parser=PropositionParser()):
         self.proposition = proposition
         self.proposition_parser = proposition_parser
         self.proposition_string = self.proposition_parser.list_to_string(
@@ -25,7 +25,7 @@ class SemanticTreeNode:
         """
         for item in self.proposition:
             if item in self.connectives or isinstance(item, list):
-                return 
+                return
 
         self.proposition_symbol = True
 
@@ -48,16 +48,16 @@ class SemanticTreeNode:
         if main_connective == '∨':
             children = self.insert_children_disjunction(
                 left_proposition, right_proposition, negation)
-        elif main_connective == '∧':
+        if main_connective == '∧':
             children = self.insert_children_conjunction(
                 left_proposition, right_proposition, negation)
-        elif main_connective == '→':
+        if main_connective == '→':
             children = self.insert_children_implication(
                 left_proposition, right_proposition, negation)
-        elif main_connective == '↔':
+        if main_connective == '↔':
             children = self.insert_children_equivalent(
                 left_proposition, right_proposition, negation)
-        elif main_connective is None and negation is True:
+        if main_connective is None and negation is True:
             children = self.insert_children_negation(left_proposition)
 
         return children
@@ -82,7 +82,7 @@ class SemanticTreeNode:
 
             self.left_child = SemanticTreeNode(negation_left,
                                                level=self.level + 1,
-                                              left_child=SemanticTreeNode(negation_left_left, level=self.level + 2))
+                                               left_child=SemanticTreeNode(negation_left_left, level=self.level + 2))
 
             return [self.left_child.left_child, self.left_child]
 
@@ -218,7 +218,8 @@ class SemanticTreeNode:
         """
 
         propositon_without_negation = left_proposition.pop()
-        self.left_child = SemanticTreeNode(propositon_without_negation, level=self.level + 1)
+        self.left_child = SemanticTreeNode(
+            propositon_without_negation, level=self.level + 1)
 
         self.left_child.is_proposition_symbol()
 

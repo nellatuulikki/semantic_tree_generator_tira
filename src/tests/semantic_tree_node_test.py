@@ -13,7 +13,7 @@ class TestPlayService(unittest.TestCase):
         self.node_with_proposition_symbol.is_proposition_symbol()
         self.assertEqual(
             True, self.node_with_proposition_symbol.proposition_symbol)
-        
+
         self.node_with_no_proposition_symbol.is_proposition_symbol()
         self.assertEqual(
             False, self.node_with_no_proposition_symbol.proposition_symbol)
