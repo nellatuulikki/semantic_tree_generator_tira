@@ -39,11 +39,13 @@ Output is presented as binary tree utilizing Python's string variable. All decom
 
 The software is combined by three main classes:
 - SemanticTreeService
-   -  maintains software logics and therefore is responsible for creating a semantic tree. Also, it enables communication between UI and entity classes (SemanticTreeNode and PropositionalParser)
+   -  maintains software logic and therefore is responsible for creating a semantic tree. Also, it enables communication between UI and entity classes (SemanticTreeNode and PropositionalParser)
 - SemanticTreeNode
    -  contains and information of a node and has all features related to adding children to a node. It also stores logic for all propositonal logic rules.
 - PropositionalParser
    - responsible for transforming propositional clauses to other datatypes, validation of proposition clause and splitting the propositional clause by its main connective.
+
+App module will start the software and creates the Flask object and import routes module. Routes module maintains the page address and communicates with page templates and the software logic. Page templates (two in this case) are found in templates directory. 
 
 ## UI 
 
