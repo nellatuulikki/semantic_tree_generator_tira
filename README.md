@@ -1,6 +1,6 @@
 ## Semantic tree generator
 
-Data Structures and Algorithm course work at University of Helsinki
+Data Structures and Algorithm course work at University of Helsinki. The final version can be tested in [Heroku](https://semantic-tree-generator.herokuapp.com/)
 
 ### Documents
 
