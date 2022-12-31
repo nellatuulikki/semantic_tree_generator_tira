@@ -25,8 +25,7 @@ The sofwatre has been deploeyd in heroku.
 
 ## Run the application on command prompt
 
-In the last testing poetry install freezed and didn't worked at all. These instruction might work for you, but the instructions above hopefully to everyone
-Clone repository
+In the last testing poetry install freezed and didn't worked at all. These instructions might work for you, but the instructions above hopefully to everyone.
 
 - poetry install
 - poetry run invoke start
