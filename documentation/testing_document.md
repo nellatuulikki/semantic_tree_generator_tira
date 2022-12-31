@@ -19,4 +19,4 @@ Also, the code has couple pretty long functions (over 20 rows).
 The correctness of proposition clauses required some additional unit testing. Correctness has been tested with DFS algorithm, in order to verify that children are created at correct height for correct parent node.
 The code should always inform about invalid proposition without crashing. Also, the semantic tree should never be created to a proposition, that has invalid symbols or uneven number of parantheses or two same symbols next to each other (excluding parantheses). 
 
-The drawing of the tree was also tested, but it couldn't be tested with more complex clauses, since those were harder to test because trees needed some much space in the testing code. These tests also included invalid propositions in order to be sure that no drawing was done to invalid inputs.
+The drawing of the tree was also tested, but it couldn't be tested with more complex clauses, since those were harder to test because trees needed some much space in the testing code. Tests also included invalid propositions in order to be sure that no drawing was done to invalid inputs.
