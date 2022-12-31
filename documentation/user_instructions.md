@@ -1,6 +1,6 @@
 # User instructions
 
-The sofwatre has been deploeyd in 
+The software has been deploeyd in 
 [Heroku](https://semantic-tree-generator.herokuapp.com/)
 
 ## Run the application on command prompt
