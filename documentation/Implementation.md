@@ -13,9 +13,13 @@ After there are no more decomposable clauses, the semantic tree will be traversa
 
 The semantic tree is constructed by using these rules from propositional logic.
 
+![rules](https://user-images.githubusercontent.com/94007460/210140630-9e4e32a1-b6e5-4ab7-af53-5e070434b0d7.png)
+
 ## Data structures and Time complexity
 
 The user will give propositional clause as string which will be then transformed into a (nested) list.
+
+
 
 ## Input/Output
 
