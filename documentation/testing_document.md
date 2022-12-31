@@ -5,7 +5,7 @@ The code is tested comprehensevily with unit testing utilizing pytest. Only the 
 
 ![pytest_final](https://user-images.githubusercontent.com/94007460/210141021-2210930a-3377-4876-bfcc-d53db5d8ccc7.png)
 
-The test can be repeated by following the instructions here.
+The test can be repeated by following the instructions [here]([https://semantic-tree-generator.herokuapp.com/](https://github.com/nellatuulikki/semantic_tree_generator_tira/blob/main/documentation/user_instructions.md)).
 
 ## Code Quality
 Code quality has been checked with pylint. The code had couple pretty long functions (over 20 rows).
