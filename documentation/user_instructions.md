@@ -8,6 +8,7 @@ The sofwatre has been deploeyd in heroku.
 - source venv/bin/activate
 - pip install -r requirements.txt
 - flask run
+- Open url
 
 ## Run tests
 
@@ -29,7 +30,6 @@ In the last testing poetry install freezed and didn't worked at all. These instr
 
 - poetry install
 - poetry run invoke start
-- flask run
 - Open url
 
 ## Run tests 
