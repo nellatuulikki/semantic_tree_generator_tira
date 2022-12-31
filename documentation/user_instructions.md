@@ -1,20 +1,25 @@
 # User instructions
 
-## Run the application
+The sofwatre has been deploeyd in heroku.
+
+## Run the application on command prompt
 
 Clone repository
 
-Install dependencies 
-
 - poetry install
-
-Start software (will be changed when software is available at Fly.io)
-
+- poetry run invoke start
 - flask run
 - Open url
 
-## Run tests (will be changed)
+## Run tests 
 
-- poetry shell
-- coverage run --branch -m pytest src
-- coverage html
+- poetry run invoke test
+
+## Generate coverage report
+
+- poetry run invoke coverage-report
+
+## PyLint
+
+- poetry run invoke lint
+
