@@ -75,7 +75,7 @@ class SemanticTreeService:
 
         Args:
             root = SemanticTreeNode
-            branch = list of SemanticTreeNodes
+            branch = list of SemanticTree
         """
         if root is None:
             return

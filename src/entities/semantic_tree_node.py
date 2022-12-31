@@ -206,7 +206,7 @@ class SemanticTreeNode:
             negation = Boolean to identify if negation rule should be used
 
         Returns:
-            One SemanticTreeNode
+            One SemanticTreeNodes
 
         """
 
