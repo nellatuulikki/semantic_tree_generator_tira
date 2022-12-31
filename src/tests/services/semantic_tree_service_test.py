@@ -14,6 +14,27 @@ def semantic_tree_list(root, proposition_list):
     return proposition_list
 
 
+def get_semantic_tree_string(proposition):
+        semantic_tree_service = SemanticTreeService(
+        root_proposition_string=proposition)
+        semantic_tree_boolean = semantic_tree_service.generate_semantic_tree()
+
+        if semantic_tree_boolean:
+            semantic_tree_service.tree_str(semantic_tree_service.root_proposition, 0)
+            semantic_tree_list = semantic_tree_service.semantic_tree_string
+        else:
+            semantic_tree_list = []
+
+        return semantic_tree_list 
+
+def get_semantic_tree(proposition_string):
+    semantic_tree_service = SemanticTreeService(
+            root_proposition_string=proposition_string)
+    semantic_tree_service.generate_semantic_tree()
+
+    return semantic_tree_service
+
+
 class TestPlayService(unittest.TestCase):
 
     def setUp(self):
@@ -65,65 +86,67 @@ class TestPlayService(unittest.TestCase):
 
     def test_semantic_tree_result(self):
         # Proposition ¬(¬(¬a))
-        semantic_tree_service = SemanticTreeService(
-            root_proposition_string='¬(¬(¬a))')
-        semantic_tree_service.generate_semantic_tree()
-
+        semantic_tree_service = get_semantic_tree('¬(¬(¬a))')
         semantic_tree = semantic_tree_list(
             semantic_tree_service.root_proposition, [])
         self.assertEqual(semantic_tree, ['¬(¬(¬a))', '¬a'])
 
         # Proposition ¬(¬a)
-        semantic_tree_service = SemanticTreeService(
-            root_proposition_string='¬(¬a)')
-        semantic_tree_service.generate_semantic_tree()
-
+        semantic_tree_service = get_semantic_tree('¬(¬a)')
         semantic_tree = semantic_tree_list(
             semantic_tree_service.root_proposition, [])
         self.assertEqual(semantic_tree, ['¬(¬a)', 'a'])
 
         # Proposition (a∨b)→¬(b∨¬(c→b))
-        semantic_tree_service = SemanticTreeService(
-            root_proposition_string='(a∨b)→¬(b∨¬(c→b))')
-        semantic_tree_service.generate_semantic_tree()
-
+        semantic_tree_service = get_semantic_tree('(a∨b)→¬(b∨¬(c→b))')
         semantic_tree = semantic_tree_list(
             semantic_tree_service.root_proposition, [])
         self.assertEqual(semantic_tree, ['(a∨b)→¬(b∨¬(c→b))',
                                          '¬(a∨b)', '¬a', '¬b', '¬(b∨¬(c→b))', '¬b',
                                          '¬(¬(c→b))', 'c→b', '¬c', 'b', 'X'])
 
-        # '¬(a→b)→(b→c)'
-        semantic_tree_service = SemanticTreeService(
-            root_proposition_string='¬(a→b)→(b→c)')
-        semantic_tree_service.generate_semantic_tree()
-
+        # ¬(a→b)→(b→c)
+        semantic_tree_service = get_semantic_tree('¬(a→b)→(b→c)')
         semantic_tree = semantic_tree_list(
             semantic_tree_service.root_proposition, [])
         self.assertEqual(semantic_tree, [
                          '¬(a→b)→(b→c)', '¬(¬(a→b))', 'a→b', '¬a', 'b', 'b→c', '¬b', 'c'])
 
-        # '(A∧C)∧(C∨¬(B→A))'
-        semantic_tree_service = SemanticTreeService(
-            root_proposition_string='(A∧C)∧(C∨¬(B→A))')
-        semantic_tree_service.generate_semantic_tree()
-
+        # (A∧C)∧(C∨¬(B→A))
+        semantic_tree_service = get_semantic_tree('(A∧C)∧(C∨¬(B→A))')
         semantic_tree = semantic_tree_list(
             semantic_tree_service.root_proposition, [])
         self.assertEqual(semantic_tree, [
                          '(A∧C)∧(C∨¬(B→A))', 'A∧C', 'C∨¬(B→A)', 'A', 'C', 'C', '¬(B→A)', 'B', '¬A', 'X'])
 
-        # '(A∧C)∧(C∨¬(B→A))'
-        semantic_tree_service = SemanticTreeService(
-            root_proposition_string='(a↔b)→¬(b∨¬(c↔b))')
-        semantic_tree_service.generate_semantic_tree()
-
+        # (A∧C)∧(C∨¬(B→A))
+        semantic_tree_service = get_semantic_tree('(a↔b)→¬(b∨¬(c↔b))')
         semantic_tree = semantic_tree_list(
             semantic_tree_service.root_proposition, [])
         self.assertEqual(semantic_tree, ['(a↔b)→¬(b∨¬(c↔b))', '¬(a↔b)', 'a', '¬b', '¬a',
                          'b', '¬(b∨¬(c↔b))', '¬b', '¬(¬(c↔b))', 'c↔b', 'c', 'b', 'X', '¬c', '¬b'])
 
     def test_semantic_tree_drawing(self):
-        semantic_tree_service = SemanticTreeService(
-            root_proposition_string='¬(¬a)')
-        semantic_tree_service.generate_semantic_tree()
+        # Valid ¬(¬a)
+        semantic_tree_list = get_semantic_tree_string('¬(¬a)')
+        self.assertEqual(semantic_tree_list, '\n¬(¬a) ✔\n          a')
+
+        # Invalid ¬(a∨
+        semantic_tree_list = get_semantic_tree_string('¬a∨')
+        self.assertEqual(semantic_tree_list, [])
+
+        # Invalid ¬(a∨
+        semantic_tree_list = get_semantic_tree_string('(¬a))∨b')
+        self.assertEqual(semantic_tree_list, [])
+
+        # Invalid ¬(a∨
+        semantic_tree_list = get_semantic_tree_string('(¬a∨)')
+        self.assertEqual(semantic_tree_list, [])
+
+        # (¬a∨)b
+        semantic_tree_list = get_semantic_tree_string('(¬a∨)b')
+        self.assertEqual(semantic_tree_list, [])
+
+        # Invalid ¬¬a
+        semantic_tree_list = get_semantic_tree_string('¬¬a')
+        self.assertEqual(semantic_tree_list, [])
