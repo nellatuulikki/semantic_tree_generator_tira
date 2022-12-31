@@ -8,19 +8,13 @@ The code is tested comprehensevily with unit testing utilizing pytest. Only the 
 The test can be repeated by following the instructions [here](https://github.com/nellatuulikki/semantic_tree_generator_tira/blob/main/documentation/user_instructions.md).
 
 ## Code Quality
-Code quality has been checked with pylint. The code had couple pretty long functions (over 20 rows).
+Code quality has been checked with pylint. 
 
 ![pylint_final](https://user-images.githubusercontent.com/94007460/210141016-bcac753d-cf8b-42e3-a9dc-f64782c8e892.png)
 
+Also, the code has couple pretty long functions (over 20 rows).
+
 ## Performance testing
 
-The correctness of proposition clauses required some additional unit testing. All proposition clauses below have been tested with DFS algorithm, in order to veriry that children are created at correct height for correct parent node. Also, the code should always inform about incorrect proposition without crashing. 
-
-The list of proposition clauses that works correctly
-- ¬(¬(¬a))
-- ¬(¬a)
-- (a∨b)→¬(b∨¬(c→b))
-- ¬(a→b)→(b→c)
-- (A∧C)∧(C∨¬(B→A))
-
-The code should always inform about invalid proposition without crashing. Also, the semantic tree should never be created to a proposition, that has invalid symbols or uneven number of parantheses or two same symbols next to each other (excluding parantheses).
+The correctness of proposition clauses required some additional unit testing. Correctness has been tested with DFS algorithm, in order to verify that children are created at correct height for correct parent node.
+The code should always inform about invalid proposition without crashing. Also, the semantic tree should never be created to a proposition, that has invalid symbols or uneven number of parantheses or two same symbols next to each other (excluding parantheses). 
