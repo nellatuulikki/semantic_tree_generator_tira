@@ -2,7 +2,18 @@ from src.entities.proposition_parser import PropositionParser
 
 
 class SemanticTreeNode:
+    """ Object for a node in Semantic Tree"""
+
     def __init__(self, proposition, left_child=None, proposition_parser=PropositionParser()):
+        """ Maintains information about a node and is responsible for
+            adding children.
+
+            Args:
+                proposition = proposition clause as a nested list
+                left_child = None or SemanticTreeNode
+                proposition_parser = PropositionParser Object
+
+            """
         self.proposition = proposition
         self.proposition_parser = proposition_parser
         self.proposition_string = self.proposition_parser.list_to_string(

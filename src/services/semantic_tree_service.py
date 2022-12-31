@@ -4,7 +4,16 @@ from src.entities.proposition_parser import PropositionParser
 
 
 class SemanticTreeService:
+    """ Object for semantic tree."""
+
     def __init__(self, root_proposition_string, proposition_parser=PropositionParser()):
+        """ Responsible for creating a semantic tree.
+
+            Args:
+                root_proposition_string = Proposition clause as a string
+                proposition_parser = PropositionParser object, for parsing propositions
+
+        """
         self.root_proposition_string = root_proposition_string
         self.root_proposition = None
         self.proposition_parser = proposition_parser
@@ -12,7 +21,7 @@ class SemanticTreeService:
         self.semantic_tree_string = ""
 
     def generate_semantic_tree(self):
-        """ Validates proposition and generates a semantic tree
+        """ Validates proposition and generates a semantic tree,
             if proposition is valid.
 
         Returns:
@@ -45,6 +54,7 @@ class SemanticTreeService:
 
     def _generate_children(self, root, unchecked_proposition):
         """ Examines recursively if node has no children and
+            adds splitted unchecked proposition to it.
 
         Args:
             root = SemanticTreeNode
@@ -71,7 +81,7 @@ class SemanticTreeService:
 
     def _closed_tree(self, root, branch):
         """ Examines every branch in a semantic tree and adds X to
-            the last node if branch has a literal and its negation
+            the last node if branch has a literal and its negation.
 
         Args:
             root = SemanticTreeNode
@@ -96,7 +106,7 @@ class SemanticTreeService:
         branch.pop()
 
     def tree_str(self, root, space):
-        """ Converts semantic tree to a string format
+        """ Converts semantic tree to a string format.
 
         Args:
             root = SemanticTreeNode

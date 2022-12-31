@@ -1,12 +1,18 @@
 class PropositionParser:
+    """ Object for parsing and validating propositions """
+
     def __init__(self):
+        """ Responsible for validiting propositions and converting those
+        to other data types.
+
+        """
         self.connectives = ['∨', '∧', '→', '↔']
         self.valid_symbols = '()∨∧→↔¬abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVXYZ'
         self.letters = 'abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVXYZ'
 
     def validate_proposition(self, proposition):
         """ Validates that proposition is in correct format. Returns false
-            if clause has incorrect characters or character in a wrong place
+            if clause has incorrect characters or character in a wrong place.
 
         Args:
             proposition = proposition clause as a string
@@ -27,7 +33,7 @@ class PropositionParser:
 
     def _invalid_symbols(self, proposition):
         """ Checks that the proposition clause is starting and
-            ending with valid symbol
+            ending with valid symbol.
 
         Args:
             proposition = proposition clause as a string
@@ -43,7 +49,7 @@ class PropositionParser:
         return True
 
     def _paranthesis_match(self, proposition):
-        """ Verifies that the number of paranthesis match
+        """ Verifies that the number of paranthesis match.
 
         Args:
             proposition = proposition clause as a string
@@ -67,7 +73,7 @@ class PropositionParser:
         return True
 
     def _double_symbol_check(self, proposition):
-        """ Checks that two symbols are not next to each other
+        """ Checks that two symbols are not next to each other.
 
         Args:
             proposition = proposition clause as a string
@@ -93,7 +99,7 @@ class PropositionParser:
         return True
 
     def list_to_string(self, proposition_list):
-        """ Converts proposition_list to string and adds parenthesis
+        """ Converts proposition_list to string and adds parenthesis.
 
         Args:
             proposition_list = proposition clause as list
@@ -113,7 +119,7 @@ class PropositionParser:
 
     def search_depth(self, char, proposition_list, depth):
         """ Finds  the deepest list of the nested list and adds
-            char to that
+            char to that.
 
         Args:
             char: Proposition symbol or connective
@@ -126,7 +132,7 @@ class PropositionParser:
         proposition_list.append(char)
 
     def parse_proposition(self, proposition):
-        """ Parses proposition to nested list
+        """ Parses proposition to nested list.
 
         Args:
             proposition = proposition clause as a string
@@ -153,8 +159,8 @@ class PropositionParser:
 
         Args:
             proposition_list = proposition list to be splitted
-            depth = the current depth of nested list
-            main_connective = main_connective as a string
+            depth = int, measures the current depth of nested list
+            main_connective = connective as a string
             negation = Boolean
 
         Returns:
@@ -189,7 +195,7 @@ class PropositionParser:
         return left_proposition, right_proposition, main_connective, negation
 
     def _remove_nested_list(self, proposition):
-        """ Converts nested list to list if having only one sublist
+        """ Converts nested list to list if having only one sublist.
 
         Args:
             proposition = splitted proposition as a nested list
