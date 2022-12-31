@@ -21,13 +21,16 @@ class TestPlayService(unittest.TestCase):
             True, self.parser.validate_proposition('(A∨B)→¬(A∨¬(B→C))'))
 
     def test_validate_proposition_with_incorrect_proposition(self):
-        # Connective first character
+        # First character connective
         self.assertEqual(False, self.parser.validate_proposition('∨s'))
+
+        # First character connective
+        self.assertEqual(False, self.parser.validate_proposition('s∨'))
 
         # Two letters next to each other
         self.assertEqual(False, self.parser.validate_proposition('aa∧p'))
 
-        # Two negations without parantheses
+        # Two negations without paranthesis
         self.assertEqual(
             False, self.parser.validate_proposition('(A∨B)→¬(A∨¬¬(B→C))'))
 
@@ -41,9 +44,6 @@ class TestPlayService(unittest.TestCase):
         # Space in the middle
         self.assertEqual(False, self.parser.validate_proposition("a ∧p"))
 
-        # Space in the middle
-        self.assertEqual(False, self.parser.validate_proposition("a ∧p"))
-
         # Invalid character
         self.assertEqual(False, self.parser.validate_proposition("#∧p"))
 
@@ -53,6 +53,8 @@ class TestPlayService(unittest.TestCase):
         # Only letters
         self.assertEqual(False, self.parser.validate_proposition("abc"))
 
+        # Starting with closing paranthesis
+        self.assertEqual(False, self.parser.validate_proposition(")abc)"))
 
     def test_parse_proposition(self):
         self.assertEqual(['a', 'v', ['b', '∧', 'c']],
