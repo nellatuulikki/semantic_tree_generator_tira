@@ -3,14 +3,14 @@
 ## Unit testing
 The code is tested comprehensevily with unit testing utilizing pytest. Only the files under src are tested meaning all files related UI has been left out.
 
-![testi_raportti_vk6](https://user-images.githubusercontent.com/94007460/206872033-bc68bf93-3e78-4cd9-b34e-968fbaf2cf79.png)
+![pytest_final](https://user-images.githubusercontent.com/94007460/210141021-2210930a-3377-4876-bfcc-d53db5d8ccc7.png)
 
 The test can be repeated by following the instructions here.
 
 ## Code Quality
 Code quality has been checked with pylint. The code had couple pretty long functions (over 20 rows).
 
-![pylint_vk6](https://user-images.githubusercontent.com/94007460/206872073-9dc426dd-f773-4537-bcf3-45796072b0f6.png)
+![pylint_final](https://user-images.githubusercontent.com/94007460/210141016-bcac753d-cf8b-42e3-a9dc-f64782c8e892.png)
 
 ## Performance testing
 
