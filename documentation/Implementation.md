@@ -17,9 +17,7 @@ The semantic tree is constructed by using these rules from propositional logic.
 
 ## Data structures and Time complexity
 
-The user will give propositional clause as string which will be then transformed into a (nested) list.
-
-
+The time complexity for creating a semantic tree is O(n log n). Data structures used are linked list, list and binary tree.
 
 ## Input/Output
 
